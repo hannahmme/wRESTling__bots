@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chatroom</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="startpage.js"></script>
+</head>
+<body>
+
+    <div class="jumbotron" style="background-color: #cecdfc; color: black">
+        <h1>Welcome to the chatrooms</h1>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username"/>
+            <text id="txtFailUsername" style="color: #ff0000"></text>
+            <br>
+        </div>
+
+        <div class="col-md-3">
+            <label for="password">Password</label>
+            <input type="text" class="form-control" id="password"/>
+            <text id="txtFailPassword" style="color: #ff0000"></text>
+            <br>
+        </div>
+
+        <div class="col-md-3">
+            <label for="securityQ">Security Question</label>
+            <input type="text" class="form-control" id="securityQ"/>
+            <text id="txtFailSecurityQ" style="color: #ff0000"></text>
+            <br>
+        </div>
+
+        <div class="col-md-3">
+            <label for="securityA">Security Answer</label>
+            <input type="text" class="form-control" id="securityA"/>
+            <text id="txtFailSecurityA" style="color: #ff0000"></text>
+            <br>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <button onclick="registerUser()" class="btn btn-dark">Register user</button>
+    </div>
+
+</body>
+</html>

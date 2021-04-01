@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chatroom</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="chatroom.js"></script>
+</head>
+<body>
+
+<div class="jumbotron" style="background-color: #cecdfc; color: black">
+    <h1>Welcome to the chatroom!</h1>
+</div>
+
+<div id="chat">
+    <div id="chat-messages">
+        <form id="chat-form" method="post">
+            <input type="text" name="message" placeholder="Enter a message!" maxlength="200" class="form-control">
+            <button type="submit" class="btn btn-dark">Send message</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
