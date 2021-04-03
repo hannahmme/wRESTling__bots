@@ -19,12 +19,27 @@
     <h1>Welcome to the chatroom!</h1>
 </div>
 
-<div id="chat">
-    <div id="chat-messages">
-        <form id="chat-form" method="post">
-            <input type="text" name="message" placeholder="Enter a message!" maxlength="200" class="form-control">
-            <button type="submit" class="btn btn-dark">Send message</button>
-        </form>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="chatmsg">
+
+                <h3>Type your message here</h3>
+                <input type="text" name="message" placeholder="Enter a message!" maxlength="200" class="form-control">
+                <br/>
+                <button type="submit" class="btn btn-dark">Send message</button>
+            </div>
+
+            <!-- Her skal det ligge  en liste som inneholder timestamp,
+            hvilken bruker som har sendt hvilken melding og meldingen-->
+            <div id="allmsg"></div>
+
+        </div>
+
+        <div class="col-sm-6">
+            <h3>Users online</h3>
+            <div id="allUsers"></div>
+        </div>
     </div>
 </div>
 
