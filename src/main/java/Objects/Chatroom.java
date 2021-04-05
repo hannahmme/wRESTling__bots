@@ -5,16 +5,16 @@ public class Chatroom {
     private String roomID;
     private String roomName;
 
-    public Chatroom(String roomID, String roomName) {
+    public Chatroom(int roomID, String roomName) {
         this.roomID = roomID;
         this.roomName = roomName;
     }
 
-    public String getRoomID() {
+    public int getRoomID() {
         return roomID;
     }
 
-    public void setRoomID(String roomID) {
+    public void setRoomID(int roomID) {
         this.roomID = roomID;
     }
 
