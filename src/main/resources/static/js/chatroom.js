@@ -1,5 +1,5 @@
 
-print();
+/*
 
 // post-metode for å sende roomID til javacontroller?
 
@@ -38,3 +38,7 @@ function printUsers(){
         formatTable(users);
     });
 }
+
+
+
+ */

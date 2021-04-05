@@ -8,18 +8,21 @@ import Objects.User;
 import org.junit.BeforeClass;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
+@RestController
 public class RestAPIClient {
 
-    private ArrayList<User> activeUsers = new ArrayList<>();
-    private ArrayList<Chatroom> activeChatrooms = new ArrayList<>();
-    private ArrayList<Message> allMsg = new ArrayList<>();
+    private static ArrayList<User> activeUsers = new ArrayList<>();
+    private static ArrayList<Chatroom> activeChatrooms = new ArrayList<>();
+    private static ArrayList<Message> allMsg = new ArrayList<>();
 
     // testdata initialized when running the application
     @BeforeClass
-    public void initialize() {
+    public static void initialize() {
         User testuser1 = new User(1,"Admin");
         activeUsers.add(testuser1);
 
@@ -33,15 +36,25 @@ public class RestAPIClient {
     }
 
     // method to generate the next available userID
-    @PostMapping("/generateUserID")
+    @GetMapping("/generateUserID")
     public int nextUserID(){
-        int listsize = activeUsers.size();
+        /*int listsize = activeUsers.size();
+        int nextUserID;
 
-        User lastUser = activeUsers.get(listsize-1);
-        int lastUserID = lastUser.getUserID();
+        System.out.println(listsize);
 
-        return lastUserID + 1;
+        if(listsize>0) {
+            User lastUser = activeUsers.get(listsize - 1);
+            int lastUserID = lastUser.getUserID();
+            nextUserID = lastUserID + 1;
+        }
+        else {
+            nextUserID = 1;
+        }
 
+        System.out.println(nextUserID);*/
+
+        return 100;
     }
 
 
@@ -52,7 +65,9 @@ public class RestAPIClient {
 // for startpage
     @PostMapping("/registerUser")
     public void registerUser(User aUser){
+        System.out.println(aUser.getUsername());
         activeUsers.add(aUser);
+
     }
 
 

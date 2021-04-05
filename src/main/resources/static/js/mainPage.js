@@ -1,4 +1,4 @@
-
+/*
 //?
 document.getElementById("joinChatroom").onclick = function () {
     location.href = "../../../../../../Kopi av wrestling bots/wRESTling_bots/chatroom";
@@ -26,3 +26,5 @@ $(function(){
         $("#select").html(drop_chatrooms);
     });
 });
+
+ */
