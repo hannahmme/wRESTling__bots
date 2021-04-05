@@ -1,4 +1,4 @@
-function registerUser() {
+function index() {
 
     let txtFailUsername;
     let username = document.getElementById("username").value();
@@ -34,7 +34,7 @@ function registerUser() {
 
 
         // user goes to mainPage after logging in and getting an ID
-        $("#registerUser").click(function(){
+        $("#index").click(function(){
             $(location).attr('href', 'mainPage.html');
             });
 

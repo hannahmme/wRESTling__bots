@@ -2,7 +2,7 @@ package Objects;
 
 public class Chatroom {
 
-    private String roomID;
+    private int roomID;
     private String roomName;
 
     public Chatroom(int roomID, String roomName) {
