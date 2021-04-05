@@ -1,42 +1,26 @@
-function index() {
+$(function(){
 
-    let txtFailUsername;
-    let username = document.getElementById("username").value();
-    if (username === "" || username === null) {
-        txtFailUsername = "You must enter a value for username.";
-    } else {
-        txtFailUsername = "";
-    }
-    document.getElementById("txtFailUsername").innerHTML = txtFailUsername;
+    $("#regUser").click(function() {
 
-    let txtFailPassword;
-    let password = document.getElementById("password").value();
-    if (password === "" || password === null) {
-        txtFailUsername = "You must enter a value for password.";
-    } else {
-        txtFailPassword = "";
-    }
-    document.getElementById("txtFailPassword").innerHTML = txtFailPassword;
+        // genererer først et USERID som returneres hit
+        const url = "/RestAPIClient/generateUserID"
+        $.post(url, function(retur) {
+            const userID = retur;
 
+            // registrerer så en bruker med generert userID og skrevet inn username
+            const url2 = "/RestAPIClient/registerUser";
+            const user = {
+                userID      : userID,
+                username    : $("#username").val()
+            }
 
-    if (txtFailUsername === "" && txtFailPassword === "") {
-        const user = {
-            username: username,
-            password: password,
-        };
+            // sending the object user into the controller-function "saveUser"
+            $.post(url2, user, function() {
+                $("#username").val("");
 
-        // sending the object user into the controller-function "saveUser"
-        $.post("/saveUser", user, function() {});
-
-        // nullstiller tekstfeltene så nestemann kan registrere seg
-        $("#username").val("");
-        $("#password").val("");
-
-
-        // user goes to mainPage after logging in and getting an ID
-        $("#index").click(function(){
-            $(location).attr('href', 'mainPage.html');
+                // user goes to mainPage after logging in and getting an ID
+                $(location).attr('href', 'mainPage.html');
             });
-
-    }
-}
+        });
+    });
+});

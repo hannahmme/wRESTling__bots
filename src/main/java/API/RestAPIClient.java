@@ -7,6 +7,8 @@ import Objects.Message;
 import Objects.User;
 import org.junit.BeforeClass;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import java.util.ArrayList;
 
 public class RestAPIClient {
@@ -30,11 +32,25 @@ public class RestAPIClient {
 
     }
 
+    // method to generate the next available userID
+    @PostMapping("/generateUserID")
+    public int nextUserID(){
+        int listsize = activeUsers.size();
+
+        User lastUser = activeUsers.get(listsize-1);
+        int lastUserID = lastUser.getUserID();
+
+        return lastUserID + 1;
+
+    }
+
+
+
     //TODO: lge en ny arrayliste for hvert chatrom som inneholder alle meldinger?
     // at det da blir opprettet automatisk hver gang et nytt rom lages?
 
 // for startpage
-    @GetMapping("/registerUser")
+    @PostMapping("/registerUser")
     public void registerUser(User aUser){
         activeUsers.add(aUser);
     }
