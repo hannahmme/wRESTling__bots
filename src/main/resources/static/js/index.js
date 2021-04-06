@@ -6,17 +6,17 @@ $(function(){
         const username = $("#username").val();
         console.log(username);
 
-            // registrerer bruker med username
-            const user = {
-                username : username
-            };
+        // registrerer bruker med username
+        const user = {
+            username : username
+        };
 
-            // sending the object user into the controller-function "saveUser"
-            $.post("/registerUser", user, function() {
-                $("#username").val("");
+        // sending the object user into the controller-function "saveUser"
+        $.post("/registerUser", user, function() {
+            $("#username").val("");
 
-                // user goes to mainPage after logging in and getting an ID
-                $(location).attr('href', 'mainPage.html');
-            });
+            // user goes to mainPage after logging in and getting an ID
+            $(location).attr('href', 'mainPage.html');
         });
     });
+});
