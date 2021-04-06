@@ -1,17 +1,26 @@
 package API;
 
+import Objects.Chatrooms;
 import Objects.Chatroom;
+import jdk.jshell.spi.ExecutionControl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
 
 @RestController
 public class ChatroomAPI {
 
+    @PostMapping("/addOne")
+    public void addOne(String roomName){
+        Chatroom newChatroom = new Chatroom(roomName);
+        Chatrooms.addRoom(newChatroom);
+    }
+
     @GetMapping("/getAll")
-    public String getAll(){
-        return "Hello from getAllChatrooms";
+    public ArrayList<Chatroom> getAll(){
+        return Chatrooms.getChatrooms();
     }
 
     @PostMapping("/deleteChatroom")
