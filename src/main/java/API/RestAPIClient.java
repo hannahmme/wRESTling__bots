@@ -23,40 +23,16 @@ public class RestAPIClient {
     // testdata initialized when running the application
     @BeforeClass
     public static void initialize() {
-        User testuser1 = new User(1,"Admin");
+        User testuser1 = new User("Admin");
         activeUsers.add(testuser1);
 
-        Chatroom testroom1 = new Chatroom(1, "Katter");
+        Chatroom testroom1 = new Chatroom( "Katter");
         activeChatrooms.add(testroom1);
 
         Message testmsg1 = new Message(testuser1, "Testing",
                 "2021-04-04 11:05:00 AM", 1);
         allMsg.add(testmsg1);
-
     }
-
-    // method to generate the next available userID
-    @GetMapping("/generateUserID")
-    public int nextUserID(){
-        /*int listsize = activeUsers.size();
-        int nextUserID;
-
-        System.out.println(listsize);
-
-        if(listsize>0) {
-            User lastUser = activeUsers.get(listsize - 1);
-            int lastUserID = lastUser.getUserID();
-            nextUserID = lastUserID + 1;
-        }
-        else {
-            nextUserID = 1;
-        }
-
-        System.out.println(nextUserID);*/
-
-        return 100;
-    }
-
 
 
     //TODO: lge en ny arrayliste for hvert chatrom som inneholder alle meldinger?
