@@ -1,21 +1,19 @@
 package Objects;
 
-public class Chatroom {
+import java.util.ArrayList;
+import java.util.UUID;
 
-    private int roomID;
+public class Chatroom {
+    private String roomID;
     private String roomName;
 
-    public Chatroom(int roomID, String roomName) {
-        this.roomID = roomID;
+    public Chatroom(String roomName) {
+        this.roomID = UUID.randomUUID().toString();
         this.roomName = roomName;
     }
 
-    public int getRoomID() {
+    public String getRoomID() {
         return roomID;
-    }
-
-    public void setRoomID(int roomID) {
-        this.roomID = roomID;
     }
 
     public String getRoomName() {
