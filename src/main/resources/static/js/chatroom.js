@@ -9,8 +9,13 @@ $.get("/printMsgs", function(allMsgs) {
 
 // method to format
 function formatMsgTable(allmsg) {
-    let out = "<table class='table table-striped table-bordered'>" + "<tr>" +
-        "<th>Sent</th> <th>User</th> <th>Messsage</th> + "</tr>";
+    let out =
+        "<table class='table table-striped table-bordered'>" +
+        "<tr>" +
+        "<th>Sent</th>" +
+        "<th>User</th>" +
+        "<th>Messsage</th>" +
+        "</tr>";
     for (const msg of allmsg) {
         out += "<tr><td>" + msg.timestamp + "</td><td>" + "</td><td>" + msg.user +
             msg.message + "</td></tr>";
