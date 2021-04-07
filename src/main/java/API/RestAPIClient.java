@@ -40,9 +40,10 @@ public class RestAPIClient {
 
 // for startpage
     @PostMapping("/registerUser")
-    public void registerUser(User aUser){
-        System.out.println(aUser.getUsername());
-        activeUsers.add(aUser);
+    public User registerUser(User user){
+        System.out.println(user.getUsername());
+        activeUsers.add(user);
+        return user;
 
     }
 

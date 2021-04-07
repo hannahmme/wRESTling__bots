@@ -6,10 +6,31 @@ document.getElementById("joinChatroom").onclick = function () {
 };
 */
 
-
 $(function(){
+    getAllChatrooms();
+    let userLoggedIn = document.getElementById("userLoggedIn");
+    let user = getUser();
+    userLoggedIn.innerHTML = user.username;
+
+    $("#createChatroom").click(function(){
+        const roomName = $("#roomName").val();
+        const newRoom = {
+            roomName: roomName,
+            creator : {
+                username : user.username,
+                userID : user.userID
+            }
+        };
+        $.post("/addOne", newRoom);
+        getAllChatrooms();
+
+    });
+
+function getAllChatrooms(){
     $.get("/getAll", function(allAvailableRooms){
         let chatroomsElement = document.getElementById("chatrooms");
+        $("#chatrooms").empty();
+     /*   chatroomsElement.empty();*/
 
         $.each(allAvailableRooms, function(i, room) {
             let div = document.createElement("div");
@@ -19,11 +40,19 @@ $(function(){
             chatroomsElement.appendChild(div);
         });
     });
+}
 
-    let userLoggedIn = document.getElementById("userLoggedIn");
-    let cookie = getCookie("userCookie");
-    console.log(cookie);
-    userLoggedIn.innerHTML = cookie;
+//When a user logs out, the cookies containing their userID and username will be removed
+    $("#logOut").click(function(){
+        setCookie("username", null, 0);
+        setCookie("userID", null, 0);
+        $(location).attr('href', 'index.html');
+    });
+
+
+
+
+
 
 
 

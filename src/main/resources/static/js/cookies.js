@@ -1,7 +1,12 @@
 /*https://www.w3schools.com/js/js_cookies.asp - A function to set a Cookie*/
 function setCookie(name, value, validDays){
     let date = new Date();
-    date.setTime(date.getTime() + (validDays*24*60*60*1000));
+    if(validDays === 0){
+        date.setTime(1); //Date is now Thu Jan 01 1970 01:00:00
+    }
+    else{
+        date.setTime(date.getTime() + (validDays*24*60*60*1000));
+    }
     let expires = "Expires= " + date.toUTCString();
     document.cookie = name + "= " + value + "; " + expires + ";path=/";
 }
@@ -20,14 +25,15 @@ function getCookie(cookieName){
         }
     }
     return "";
-   /* $.each(splitArray, function(counter, cookieName){
-        let cookie = cookieName;
-        while(cookie.charAt(0) == ' '){
-            cookie = cookie.substring(1);
-        }
-        if (cookie.indexOf(name) == 0){
-            return cookie.substring(name.length, cookie.length);
-        }
-    });
-    return "";*/
+}
+
+function getUser(){
+    let userID = getCookie("userID");
+    let username = getCookie("username");
+    const user = {
+        username : username,
+        userID : userID
+    };
+    return user;
+
 }

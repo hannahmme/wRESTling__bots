@@ -12,8 +12,7 @@ import java.util.ArrayList;
 @RestController
 public class ChatroomAPI {
 
-    //TODO: 1) Endre GetMapping til PostMapping
-    @GetMapping("/addOne")
+    @PostMapping("/addOne")
     public void addOne(String roomName, User creator){
         Chatroom newChatroom = new Chatroom(roomName, creator);
         Chatrooms.addRoom(newChatroom);
