@@ -8,6 +8,7 @@ public class Chatroom {
     private String roomName;
     private String roomID;
     private ArrayList<User> participants;
+    //TODO: Ordne slik at meldinger legges til i listen til chatrommet.
     //private ArrayList<Message> messages;
 
     public Chatroom(String roomName, User creator) {
