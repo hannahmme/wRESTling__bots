@@ -4,21 +4,31 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Chatroom {
-    private String creator;
+    private User creator;
     private String roomName;
     private String roomID;
+    private ArrayList<User> participants;
 
-    public Chatroom(String roomName) {
+    public Chatroom(String roomName, User creator) {
+        this.creator = creator;
         this.roomName = roomName;
         this.roomID = UUID.randomUUID().toString();
     }
 
+    public ArrayList<User> getParticipants(){
+        return this.participants;
+    }
+
+    public User getCreator(){
+        return this.creator;
+    }
+
     public String getRoomID() {
-        return roomID;
+        return this.roomID;
     }
 
     public String getRoomName() {
-        return roomName;
+        return this.roomName;
     }
 
     public void setRoomName(String roomName) {

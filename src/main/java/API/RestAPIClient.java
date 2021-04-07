@@ -26,7 +26,7 @@ public class RestAPIClient {
         User testuser1 = new User("Admin");
         activeUsers.add(testuser1);
 
-        Chatroom testroom1 = new Chatroom( "Katter");
+        Chatroom testroom1 = new Chatroom( "Katter", testuser1);
         activeChatrooms.add(testroom1);
 
         Message testmsg1 = new Message(testuser1, "Testing",
