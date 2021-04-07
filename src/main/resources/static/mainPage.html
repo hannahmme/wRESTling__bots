@@ -8,7 +8,7 @@
     <title>Chatroom</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="js/mainPage.js"></script>
-    <script src="js/cookies.js"></script>
+    <script src="js/utils/cookieUtils.js"></script>
 </head>
 <body>
 
@@ -28,15 +28,7 @@
 
     <div class="container">
         <div class="form-group">
-            <div>
-
-            </div>
-            <div id="card-body"></div>
-
-
-
-            <!--<div id="chatrooms"></div>-->
-            <!--<button id="joinChatroom" class="btn btn-dark">Choose this chatroom</button>-->
+            <div id="card-container"></div>
             <button id="createChatroom" class="btn btn-dark">Create a new chatroom</button>
             <input id="roomName" type="text">
             <span id="chatroomErrorMessage">You need to write a name to your chatroom. Please enter a suitble chatroom-name.</span>

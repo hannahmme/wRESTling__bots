@@ -9,11 +9,7 @@ $(function(){
         }
         else{
             $("#registerErrorMessage").hide();
-            const newUser = {
-                username : username
-            };
-            // sending the object user into the controller-function "saveUser"
-            $.post("/registerUser", newUser, function(user) {
+            $.post("/registerUser", {username: username}, function(user) {
                 $("#username").val("");
                 setCookie("username", username, 1);
                 setCookie("userID", user.userID, 1);

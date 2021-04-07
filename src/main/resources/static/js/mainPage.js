@@ -1,11 +1,3 @@
-
-/*
-//?
-document.getElementById("joinChatroom").onclick = function () {
-    location.href = "../../../../../../Kopi av wrestling bots/wRESTling_bots/chatroom";
-};
-*/
-
 $(function(){
     getAllChatrooms();
     $("#chatroomErrorMessage").hide();
@@ -29,16 +21,12 @@ $(function(){
             $("#chatroomErrorMessage").hide();
             $.post("/addOne", newRoom);
             location.reload();
-
         }
-
-       /* getAllChatrooms();*/
-
     });
 
 function getAllChatrooms(){
     $.get("/getAll", function(allAvailableRooms){
-        let chatroomCardElement = document.getElementById("card-body");
+        let chatroomCardElement = document.getElementById("card-container");
 
         $.each(allAvailableRooms, function(counter, room){
             const card = document.createElement("div");
@@ -55,17 +43,6 @@ function getAllChatrooms(){
 
             chatroomCardElement.innerHTML += cardContent;
         });
-
-        /*let chatroomsElement = document.getElementById("chatrooms");
-        $("#chatrooms").empty();
-
-        $.each(allAvailableRooms, function(i, room) {
-            let div = document.createElement("div");
-            div.innerHTML = room.roomName;
-            div.id = room.roomID;
-            div.classList.add("chatroom");
-            chatroomsElement.appendChild(div);
-        });*/
     });
 }
 

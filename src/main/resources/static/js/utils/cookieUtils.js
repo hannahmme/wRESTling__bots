@@ -35,5 +35,4 @@ function getUser(){
         userID : userID
     };
     return user;
-
 }

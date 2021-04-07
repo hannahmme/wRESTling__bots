@@ -8,16 +8,21 @@ public class Chatroom {
     private String roomName;
     private String roomID;
     private ArrayList<User> participants;
+    //private ArrayList<Message> messages;
 
     public Chatroom(String roomName, User creator) {
         this.creator = creator;
         this.roomName = roomName;
         this.roomID = UUID.randomUUID().toString();
-        this.participants = null;
+        this.participants = new ArrayList<>();
+        //this.messages = null;
     }
 
-    public void addParticipant(User user){
-        this.participants.add(user);
+    public void addParticipant(String userID){
+        if(getParticipantById(userID) == null){
+            User participant = Users.getUser(userID);
+            this.participants.add(participant);
+        }
     }
 
     public ArrayList<User> getParticipants(){
@@ -38,5 +43,15 @@ public class Chatroom {
 
     public void setRoomName(String roomName) {
         this.roomName = roomName;
+    }
+
+    public User getParticipantById(String userID){
+        for(User participant : getParticipants() ){
+            String userIDstring = participant.getUserID();
+            if(userIDstring.equals(userID)){
+                return participant;
+            }
+        }
+        return null;
     }
 }

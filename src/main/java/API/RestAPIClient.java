@@ -5,6 +5,7 @@ package API;
 import Objects.Chatroom;
 import Objects.Message;
 import Objects.User;
+import Objects.Users;
 import org.junit.BeforeClass;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,16 +41,21 @@ public class RestAPIClient {
 
 // for startpage
     @PostMapping("/registerUser")
-    public User registerUser(User user){
-        activeUsers.add(user);
-        return user;
+    public User registerUser(String username){
+        User newUser = new User(username);
+        String melding = newUser.getUserID() + " " + newUser.getUsername();
+        System.out.println(melding);
+        Users.addUser(newUser);
+        return newUser;
     }
-// for chatroom
-    // method to print all users active in htat chatroom?
+
+    //TODO: Flyttet liste over registrerte brukere til Users-klassen.
+/*
+    //method to print all registrered users, not users belonging to chatrooms
     @GetMapping("/printUsers")
-    public ArrayList<User> printUsers(int roomID){
+    public ArrayList<User> printUsers(String roomID){
         return activeUsers;
-    }
+    }*/
 
     // getting and returning a list with all messages for room with roomID
     @GetMapping("/printMsgs")
@@ -62,21 +68,4 @@ public class RestAPIClient {
         }
         return ret;
     }
-
-
-// for mainpage
-    // method to get and return all chatrooms available in an arraylist
-    @GetMapping("/getChatrooms")
-    public ArrayList<Chatroom> getAvailableChatrooms(){
-        return activeChatrooms;
-    }
-
-
-    // method to save new chatrooms to arraylist
-    @GetMapping("/newChatroom")
-    public void makeChatroom(Chatroom aChatroom){
-        activeChatrooms.add(aChatroom);
-    }
-
-
 }
