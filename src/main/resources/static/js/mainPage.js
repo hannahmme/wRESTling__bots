@@ -15,7 +15,7 @@ $(function(){
 
     $("#createChatroom").click(function(){
         const roomName = $("#roomName").val();
-        if(roomName.length === 0 || roomName === ' '){
+        if(roomName.length === 0 || roomName === ' ' || roomName === null){
             $("#chatroomErrorMessage").show();
         }
         else{
@@ -49,7 +49,7 @@ function getAllChatrooms(){
                     "<div class='card-body'>" +
                         "<h5 class='card-title'>"+room.roomName+"</h5>" +
                         "<p class='card-text'>Some info here</p>" +
-                        "<a href='#' class='btn btn-primary'>Go to chatroom</a>" +
+                        "<a id='goToChatRoom' href='chatroom.html?chatroomID="+room.roomID+"' class='btn btn-primary'>Go to chatroom</a>" +
                     "</div>" +
                 "</div>";
 
@@ -75,20 +75,5 @@ function getAllChatrooms(){
         setCookie("userID", null, 0);
         $(location).attr('href', 'index.html');
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
 
