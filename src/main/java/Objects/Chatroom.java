@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Chatroom {
-    private String roomID;
+    private String creator;
     private String roomName;
+    private String roomID;
 
     public Chatroom(String roomName) {
-        this.roomID = UUID.randomUUID().toString();
         this.roomName = roomName;
+        this.roomID = UUID.randomUUID().toString();
     }
 
     public String getRoomID() {

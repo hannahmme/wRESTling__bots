@@ -14,7 +14,6 @@ public class ChatroomAPI {
 
 
     //TODO: 1) Endre GetMapping til PostMapping
-    //todo: 2) Legge inn hvem som har opprettet chatrommet med brukerID 
     @GetMapping("/addOne")
     public void addOne(String roomName){
         Chatroom newChatroom = new Chatroom(roomName);
