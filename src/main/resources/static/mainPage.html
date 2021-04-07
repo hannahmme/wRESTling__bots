@@ -8,6 +8,7 @@
     <title>Chatroom</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="js/mainPage.js"></script>
+    <script src="js/cookies.js"></script>
 </head>
 <body>
 
@@ -18,23 +19,21 @@
   for å velge rommet.
   Se Transaksjon.js i nettbank! Der Tor har laget en dropdown helt øverst-->
 
-        <div class="jumbotron" style="background-color: #cecdfc; color: black">
-            <h1>Welcome to the chatrooms</h1>
+    <div class="jumbotron" style="background-color: #cecdfc; color: black">
+        <h1>Welcome to the chatrooms</h1>
+        <div>
+            Logged in as: <span id="userLoggedIn"></span>
         </div>
-
-        <div id="chatrooms">
-        </div>
-
-
-        <!-- knapp for å gå inn i chatrommet -->
+    </div>
         <div class="col-md-3">
-            <label>Roomname:</label>
-            <div id="select"></div>
+            <div id="chatrooms"></div>
             <button id="joinChatroom" class="btn btn-dark">Choose this chatroom</button>
+            <button id="createChatroom" class="btn btn-dark">Create a new chatroom</button>
         </div>
 
-<!-- viser alle registrerte og online brukere-->
-<div id="allonlineUsers"></div>
-
+    <!-- viser alle registrerte og online brukere-->
+    <div class="col-md-3">
+        <div id="allOnlineUsers"></div>
+    </div>
 </body>
 </html>
