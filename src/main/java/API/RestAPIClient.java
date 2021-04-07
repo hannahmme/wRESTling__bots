@@ -41,15 +41,9 @@ public class RestAPIClient {
 // for startpage
     @PostMapping("/registerUser")
     public User registerUser(User user){
-        System.out.println(user.getUsername());
         activeUsers.add(user);
         return user;
-
     }
-
-
-
-
 // for chatroom
     // method to print all users active in htat chatroom?
     @GetMapping("/printUsers")

@@ -13,10 +13,15 @@ public class Chatroom {
         this.creator = creator;
         this.roomName = roomName;
         this.roomID = UUID.randomUUID().toString();
+        this.participants = null;
+    }
+
+    public void addParticipant(User user){
+        this.participants.add(user);
     }
 
     public ArrayList<User> getParticipants(){
-        return this.participants;
+        return participants;
     }
 
     public User getCreator(){

@@ -18,6 +18,28 @@ public class ChatroomAPI {
         Chatrooms.addRoom(newChatroom);
     }
 
+    @PostMapping("/addParticipant")
+    public void addParticipant(String roomID, User user){
+        ArrayList<Chatroom> list = Chatrooms.getChatrooms();
+        for(Chatroom chatroom : list){
+            if(chatroom.getRoomID().equals(roomID)){
+                chatroom.addParticipant(user);
+                System.out.println(chatroom.getParticipants().toString());
+            }
+        }
+    }
+
+    @GetMapping("/getAllParticipants")
+    public ArrayList<User> getAllParticipants(String roomID){
+        ArrayList<Chatroom> list = Chatrooms.getChatrooms();
+        for(Chatroom chatroom : list){
+            if(chatroom.getRoomID().equals(roomID)){
+                return chatroom.getParticipants();
+            }
+        }
+        return null;
+    }
+
     @GetMapping("/getAll")
     public ArrayList<Chatroom> getAll(){
         return Chatrooms.getChatrooms();
