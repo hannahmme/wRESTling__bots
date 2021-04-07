@@ -8,8 +8,6 @@ document.getElementById("joinChatroom").onclick = function () {
 
 
 $(function(){
-
-
     $.get("/getAll", function(allAvailableRooms){
         let chatroomsElement = document.getElementById("chatrooms");
 
@@ -21,6 +19,13 @@ $(function(){
             chatroomsElement.appendChild(div);
         });
     });
+
+    let userLoggedIn = document.getElementById("userLoggedIn");
+    let cookie = getCookie("userCookie");
+    console.log(cookie);
+    userLoggedIn.innerHTML = cookie;
+
+
 
 
 

@@ -4,6 +4,7 @@ $(function(){
 
     $("#regUser").click(function() {
         const username = $("#username").val();
+        setCookie( "userCookie", username, 1);
         console.log(username);
 
         // registrerer bruker med username
