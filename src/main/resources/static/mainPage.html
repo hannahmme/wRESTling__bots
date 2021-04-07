@@ -25,18 +25,29 @@
             Logged in as: <span id="userLoggedIn"></span>
         </div>
     </div>
-        <div class="col-md-3">
-            <div id="chatrooms"></div>
-            <button id="joinChatroom" class="btn btn-dark">Choose this chatroom</button>
-            <input id="roomName" type="text">
+
+    <div class="container">
+        <div class="form-group">
+            <div>
+
+            </div>
+            <div id="card-body"></div>
+
+
+
+            <!--<div id="chatrooms"></div>-->
+            <!--<button id="joinChatroom" class="btn btn-dark">Choose this chatroom</button>-->
             <button id="createChatroom" class="btn btn-dark">Create a new chatroom</button>
+            <input id="roomName" type="text">
+            <span id="chatroomErrorMessage">You need to write a name to your chatroom. Please enter a suitble chatroom-name.</span>
+
+            <!-- viser alle registrerte og online brukere-->
+            <div class="col-md-3">
+                <div id="allOnlineUsers"></div>
+            </div>
+
+            <button id="logOut" class="btn btn-dark">Log out</button>
         </div>
-
-    <!-- viser alle registrerte og online brukere-->
-    <div class="col-md-3">
-        <div id="allOnlineUsers"></div>
     </div>
-
-    <button id="logOut" class="btn btn-dark">Log out</button>
 </body>
 </html>

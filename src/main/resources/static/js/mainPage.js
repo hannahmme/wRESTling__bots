@@ -8,29 +8,56 @@ document.getElementById("joinChatroom").onclick = function () {
 
 $(function(){
     getAllChatrooms();
+    $("#chatroomErrorMessage").hide();
     let userLoggedIn = document.getElementById("userLoggedIn");
     let user = getUser();
     userLoggedIn.innerHTML = user.username;
 
     $("#createChatroom").click(function(){
         const roomName = $("#roomName").val();
-        const newRoom = {
-            roomName: roomName,
-            creator : {
-                username : user.username,
-                userID : user.userID
-            }
-        };
-        $.post("/addOne", newRoom);
-        getAllChatrooms();
+        if(roomName.length === 0 || roomName === ' '){
+            $("#chatroomErrorMessage").show();
+        }
+        else{
+            const newRoom = {
+                roomName: roomName,
+                creator : {
+                    username : user.username,
+                    userID : user.userID
+                }
+            };
+            $("#chatroomErrorMessage").hide();
+            $.post("/addOne", newRoom);
+            location.reload();
+
+        }
+
+       /* getAllChatrooms();*/
 
     });
 
 function getAllChatrooms(){
     $.get("/getAll", function(allAvailableRooms){
-        let chatroomsElement = document.getElementById("chatrooms");
+        let chatroomCardElement = document.getElementById("card-body");
+
+        $.each(allAvailableRooms, function(counter, room){
+            const card = document.createElement("div");
+            card.classList.add('card-body');
+
+            let cardContent =
+                "<div class='card' style='width:18rem'>" +
+                    "<div class='card-body'>" +
+                        "<h5 class='card-title'>"+room.roomName+"</h5>" +
+                        "<p class='card-text'>Some info here</p>" +
+                        "<a href='#' class='btn btn-primary'>Go to chatroom</a>" +
+                    "</div>" +
+                "</div>";
+
+            chatroomCardElement.innerHTML += cardContent;
+        });
+
+        /*let chatroomsElement = document.getElementById("chatrooms");
         $("#chatrooms").empty();
-     /*   chatroomsElement.empty();*/
 
         $.each(allAvailableRooms, function(i, room) {
             let div = document.createElement("div");
@@ -38,7 +65,7 @@ function getAllChatrooms(){
             div.id = room.roomID;
             div.classList.add("chatroom");
             chatroomsElement.appendChild(div);
-        });
+        });*/
     });
 }
 
