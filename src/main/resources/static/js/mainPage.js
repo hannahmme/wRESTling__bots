@@ -38,11 +38,16 @@ function getAllChatrooms(){
                         "<h5 class='card-title'>"+room.roomName+"</h5>" +
                         "<p class='card-text'>Some info here</p>" +
                         "<a id='goToChatRoom' href='chatroom.html?chatroomID="+room.roomID+"' class='btn btn-primary'>Go to chatroom</a>" +
-                        "<a id='deleteChatRoom' class='btn btn-primary'>Delete chatroom</a>" +
+                        "<a id='deleteChatroom"+room.roomID+"' class='btn btn-primary'>Delete chatroom</a>" +
                     "</div>" +
                 "</div>";
 
             chatroomCardElement.innerHTML += cardContent;
+
+            $("#deleteChatroom"+room.roomID).click(function(){
+                $.post("/deleteChatroom", room);
+                location.reload();
+            });
         });
     });
 }

@@ -20,6 +20,7 @@ public class ChatroomAPI {
     public void addOne(String roomName, User creator){
         Chatroom newChatroom = new Chatroom(roomName, creator);
         Chatrooms.addRoom(newChatroom);
+        System.out.println("Chatroom opprettet med navn: " + newChatroom.getRoomName() + " og id: " + newChatroom.getRoomID());
     }
 
     @PostMapping("/addParticipant")
@@ -58,7 +59,23 @@ public class ChatroomAPI {
 
     // TODO: slette chatrom om ingen bruker det på lenge? eller med en knapp?
     @PostMapping("/deleteChatroom")
-    public void deleteChatroom(){
+    public void deleteChatroom(String roomID){
+        System.out.println("RoomID som skal slettes: " + roomID);
+        ArrayList<Chatroom> list = Chatrooms.getChatrooms();
+        System.out.println("RoomIDs før sletting: ");
+        for(Chatroom chatroom : list){
+            System.out.println(chatroom.getRoomID());
+            String chatroomID = chatroom.getRoomID();
+            if(chatroomID.equals(roomID)){
+                Chatrooms.chatrooms.remove(chatroom);
+                System.out.println("Chatroom med id: " + roomID + " er slettet.");
+                break;
+            }
+        }
+        System.out.println("RoomIDs etter sletting: ");
+        for(Chatroom chatroom : list){
+            System.out.println(chatroom.getRoomID());
+        }
     }
 
     @PostMapping("/addMessage")
