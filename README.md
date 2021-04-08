@@ -5,8 +5,12 @@ wRESTling bots is a Java/ Javascript library for chatting on a webserver with ot
 
 ## Running the program
 
-To run the program, you should execute the "Oblig2DatSkyApplication" program found in /main/java/API and then open a localhost:8080 in your webbrowser. 
+To run the program, you should
+1. execute the "Oblig2DatSkyApplication" program found in /main/java/API
+2. open SERVER_URL: 'http://localhost:8080' in your preffered webbrowser
+
 We recommend running this application from IntelliJ IDE, since this is the IDE the application has been developed in.
+
 
 
 ## Usage
@@ -14,10 +18,21 @@ We recommend running this application from IntelliJ IDE, since this is the IDE t
 When the webbrowser is open and the application is running
 
 
+## Server
 
-## External libraries
+The server is a Spring Boot application created with Spring Initializr.
+I added the "Spring Reactive Web" (WebFlux) dependency.
 
-In the utforming of this application we have taken advantage of the Bootstrap-library for designing the GUI.
+
+
+## Client
+
+
+
+## Libraries
+We are using Java version 14 with the Spring Boot framework and jUnit.
+
+In the making of this application we have used of the Bootstrap-library for designing the GUI.
 
 ```
 ```
