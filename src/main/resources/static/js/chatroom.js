@@ -1,4 +1,4 @@
-// TODO: skrive ut alle eksisterende meldinger når chatrommet åpner
+
 
 $(window).on('load', function(){
     let urlObject = new URL(window.location.href);
