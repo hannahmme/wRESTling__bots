@@ -1,12 +1,8 @@
 package Objects;
 
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class User {
-
     private String userID;
     private String username;
 

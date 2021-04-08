@@ -1,3 +1,5 @@
+// TODO: skrive ut alle eksisterende meldinger når chatrommet åpner
+
 $(window).on('load', function(){
     let urlObject = new URL(window.location.href);
     let roomID = urlObject.searchParams.get('chatroomID');
@@ -32,7 +34,6 @@ $(window).on('load', function(){
         });
     }
 
-// TODO: ikke ferdig med å skrive ut meldinger - må legge til sånn at når knappen trykkes på kjøres denne metoden
     $("#createMessage").click(function() {
         let msg = $("#message").val();
         let msgData = {
@@ -54,8 +55,8 @@ $(window).on('load', function(){
                     "<th>Username</th>" + "<th>Timestamp</th>" + "<th>Message</th>" +
                     "</tr>";
 
-                // TODO: må skrive ut brukernavn/navn istedetfor
-                for (const msg of chatroomMessages) {
+                // TODO: sørge for at username blir printet ut i stedet for userID
+                for (const msg of chatroomMessages.reverse()) {
                     output +=
                         "<tr>" +
                         "<td>" + msg.userID + "</td>" + "<td>" + msg.timestamp + "</td>" + "<td>" + msg.message + "</td>"
