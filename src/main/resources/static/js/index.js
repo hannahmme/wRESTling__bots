@@ -4,12 +4,10 @@ $(function(){
 
     $("#regUser").click(function() {
         const username = $("#username").val();
-        console.log(username);
 
         // genererer først et USERID som returneres hit
-        $.get("/generateUserID",function(retur) {   // TODO: noe er feil - får 404?
+        $.get("/generateUserID",function(retur) {
             const userID = retur;
-            console.log(userID);
 
             // registrerer så en bruker med generert userID og skrevet inn username
             const user = {

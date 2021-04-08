@@ -20,28 +20,11 @@ public class RestAPIClient {
     private static ArrayList<Chatroom> activeChatrooms = new ArrayList<>();
     private static ArrayList<Message> allMsg = new ArrayList<>();
 
-    // testdata initialized when running the application
-    @BeforeClass
-    public static void initialize() {
-        User testuser1 = new User(1,"Admin");
-        activeUsers.add(testuser1);
-
-        Chatroom testroom1 = new Chatroom(1, "Katter");
-        activeChatrooms.add(testroom1);
-
-        Message testmsg1 = new Message(testuser1, "Testing",
-                "2021-04-04 11:05:00 AM", 1);
-        allMsg.add(testmsg1);
-
-    }
-
-    // method to generate the next available userID
+    // OK: method to generate the next available userID
     @GetMapping("/generateUserID")
     public int nextUserID(){
-        /*int listsize = activeUsers.size();
+        int listsize = activeUsers.size();
         int nextUserID;
-
-        System.out.println(listsize);
 
         if(listsize>0) {
             User lastUser = activeUsers.get(listsize - 1);
@@ -51,16 +34,12 @@ public class RestAPIClient {
         else {
             nextUserID = 1;
         }
-
-        System.out.println(nextUserID);*/
-
-        return 100;
+        return nextUserID;
     }
 
 
 
-    //TODO: lge en ny arrayliste for hvert chatrom som inneholder alle meldinger?
-    // at det da blir opprettet automatisk hver gang et nytt rom lages?
+    //TODO: lage en ny arrayliste for hvert chatrom som inneholder alle meldinger? Eller ha en lang arrayliste?
 
 // for startpage
     @PostMapping("/registerUser")
