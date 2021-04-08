@@ -1,11 +1,14 @@
 package API;
 
 import Objects.*;
+import org.apache.tomcat.jni.Time;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 @RestController
@@ -27,6 +30,16 @@ public class ChatroomAPI {
                 System.out.println(chatroom.getRoomName() + " har antall deltakere: " + chatroom.getParticipants().size());
             }
         }
+    }
+
+    @GetMapping("/getOneParticipant")
+    public String getOneParticipant(String userID){
+        User aUser = Users.getUser(userID);
+        if (aUser != null) {
+            System.out.println(aUser.getUsername());
+            return aUser.getUsername();
+        }
+        else{return null;}
     }
 
     @GetMapping("/getAllParticipants")
@@ -58,7 +71,8 @@ public class ChatroomAPI {
         for(Chatroom chatroom : list){
             String chatroomID = chatroom.getRoomID();
             if(chatroomID.equals(roomID)){
-                Message aMsg = new Message(userID,msg, LocalDateTime.now().toString(),roomID);
+                String time = LocalDate.now().toString() + ", at " + LocalTime.now().toString();
+                Message aMsg = new Message(userID, msg,time ,roomID);
                 chatroom.addMessage(aMsg);
             }
         }

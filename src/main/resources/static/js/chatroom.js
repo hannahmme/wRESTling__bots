@@ -32,39 +32,40 @@ $(window).on('load', function(){
         });
     }
 
-    let msg = $("#message").val();
-    let msgData = {
-        roomID : roomID,
-        userID : user.userID,
-        msg : msg
-    }
+// TODO: ikke ferdig med å skrive ut meldinger - må legge til sånn at når knappen trykkes på kjøres denne metoden
+    $("#createMessage").click(function() {
+        let msg = $("#message").val();
+        let msgData = {
+            roomID : roomID,
+            userID : user.userID,
+            msg : msg
+        }
 
-    // TODO: ikke ferdig med å skrive ut meldinger - må legge til sånn at når knappen trykkes på
-    // kjøres denne metoden
-    $.post("/addMessage", msgData)
-        .done(function () { // JavaScript promise: funksjonen kalles når post-kallet er ferdig.
-            getMessages();  // (sørger for at getMessages() blir kallt etter vi har lagt til bruker)
-        });
+        $.post("/addMessage", msgData)
+            .done(function () { // JavaScript promise: funksjonen kalles når post-kallet er ferdig.
+                getMessages();  // (sørger for at getMessages() blir kallt etter vi har lagt til bruker)
+            });
 
-    function getMessages(){
-        $.get("/getMessages", {roomID:roomID}, function(chatroomMessages){
-            let output =
-                "<table class='table table-striped table-bordered'>" +
-                "<tr>" +
-                "<th>Username</th>" + "<th>Timestamp</th>" + "<th>Username</th>" +
-                "</tr>";
-
-            for (const msg of chatroomMessages){
-                output +=
+        function getMessages() {
+            $.get("/getMessages", {roomID: roomID}, function (chatroomMessages) {
+                let output =
+                    "<table class='table table-striped table-bordered'>" +
                     "<tr>" +
-                    "<td>" + msg.username + "</td>" + "<td>" + msg.timestamp + "</td>" + "<td>" + msg.message + "</td>"
+                    "<th>Username</th>" + "<th>Timestamp</th>" + "<th>Message</th>" +
                     "</tr>";
-            }
-            output += "</table>";
-            $("#allMsgs").empty().html(output);
-        });
-    }
 
+                // TODO: må skrive ut brukernavn/navn istedetfor
+                for (const msg of chatroomMessages) {
+                    output +=
+                        "<tr>" +
+                        "<td>" + msg.userID + "</td>" + "<td>" + msg.timestamp + "</td>" + "<td>" + msg.message + "</td>"
+                    "</tr>";
+                }
+                output += "</table>";
+                $("#allMsgs").empty().html(output);
+            });
+        }
+    });
 });
 
 

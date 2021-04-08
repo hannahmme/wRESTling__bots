@@ -21,11 +21,11 @@ public class Message {
         this.roomID = roomID;
     }
 
-    public String getUser() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUser(String userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 
