@@ -7,10 +7,15 @@ public class Chatbots {
     private static ArrayList<Chatbot> chatbots = new ArrayList<>();
 
     public void initialize() {
-        Chatbot adminBot = new Chatbot("Admin", "Admin");
-        Chatbot helperbot1 = new Chatbot("Caroline", "helper");
-        Chatbot helperbot2 = new Chatbot("Hannah", "helper");
-        Chatbot helperbot3 = new Chatbot("Amalie", "helper");
+        Chatbot moderatorBot = new Chatbot("Moderator");
+        Chatbot helperbot = new Chatbot("Caroline");
+        Chatbot neutralbot = new Chatbot("Hannah");
+        Chatbot negativebot = new Chatbot("Amalie");
+
+        chatbots.add(moderatorBot);
+        chatbots.add(helperbot);
+        chatbots.add(neutralbot);
+        chatbots.add(negativebot);
     }
 
     public static ArrayList<Chatbot> getChatbots() {
