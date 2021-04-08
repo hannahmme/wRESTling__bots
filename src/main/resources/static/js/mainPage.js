@@ -38,6 +38,7 @@ function getAllChatrooms(){
                         "<h5 class='card-title'>"+room.roomName+"</h5>" +
                         "<p class='card-text'>Some info here</p>" +
                         "<a id='goToChatRoom' href='chatroom.html?chatroomID="+room.roomID+"' class='btn btn-primary'>Go to chatroom</a>" +
+                        "<a id='deleteChatRoom' class='btn btn-primary'>Delete chatroom</a>" +
                     "</div>" +
                 "</div>";
 
@@ -46,6 +47,7 @@ function getAllChatrooms(){
     });
 }
 
+// TODO: slette bruker fra alle lister brukeren er med i i java. må sende noe info i et get-kall?
 //When a user logs out, the cookies containing their userID and username will be removed
     $("#logOut").click(function(){
         setCookie("username", null, 0);

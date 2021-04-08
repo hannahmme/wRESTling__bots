@@ -34,16 +34,6 @@ public class ChatroomAPI {
         }
     }
 
-    @GetMapping("/getOneParticipant")
-    public String getOneParticipant(String userID){
-        User aUser = Users.getUser(userID);
-        if (aUser != null) {
-            System.out.println(aUser.getUsername());
-            return aUser.getUsername();
-        }
-        else{return null;}
-    }
-
     @GetMapping("/getAllParticipants")
     public ArrayList<User> getAllParticipants(String roomID){
         ArrayList<Chatroom> list = Chatrooms.getChatrooms();
@@ -56,11 +46,17 @@ public class ChatroomAPI {
         return null;
     }
 
+    // TODO: slette bruker om hun trykker på logg ut knappen
+    @PostMapping("/deleteUser")
+    public void deleteUser(){
+    }
+
     @GetMapping("/getAll")
     public ArrayList<Chatroom> getAll(){
         return Chatrooms.getChatrooms();
     }
 
+    // TODO: slette chatrom om ingen bruker det på lenge? eller med en knapp?
     @PostMapping("/deleteChatroom")
     public void deleteChatroom(){
     }

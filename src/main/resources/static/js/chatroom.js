@@ -47,6 +47,7 @@ $(window).on('load', function(){
                 getMessages();  // (sørger for at getMessages() blir kallt etter vi har lagt til bruker)
             });
 
+
         function getMessages() {
             $.get("/getAllParticipants", {roomID:roomID}, function(chatroomParticipants){
                 $.get("/getMessages", {roomID: roomID}, function (chatroomMessages) {
@@ -57,7 +58,7 @@ $(window).on('load', function(){
                         "<tr>" +
                         "<th>Username</th>" + "<th>Timestamp</th>" + "<th>Message</th>" +
                         "</tr>";
-                    
+
                     for (const msg of chatroomMessages.reverse()) {
                         for (const participant of chatroomParticipants){
                             if (msg.userID === participant.userID){
@@ -71,12 +72,13 @@ $(window).on('load', function(){
                         "</tr>";
                     }
                     output += "</table>";
-                    $("#allMsgs").empty().html(output);
+                    if(username!=null) {
+                        $("#allMsgs").empty().html(output);
+                    }
                 });
             });
 
         } // getMessages() end
-
     });
 });
 
