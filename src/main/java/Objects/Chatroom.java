@@ -18,6 +18,16 @@ public class Chatroom {
         this.messages = new ArrayList<>();
     }
 
+    public User getParticipantById(String userID){
+        for(User participant : getParticipants() ){
+            String userIDstring = participant.getUserID();
+            if(userIDstring.equals(userID)){
+                return participant;
+            }
+        }
+        return null;
+    }
+
     public void addParticipant(String userID){
         if(getParticipantById(userID) == null){
             User participant = Users.getUser(userID);
@@ -25,12 +35,16 @@ public class Chatroom {
         }
     }
 
-    public ArrayList<Message> getMessages(){
-        return messages;
-    }
-
     public ArrayList<User> getParticipants(){
         return participants;
+    }
+
+    public void addMessage(Message aMsg) {
+        this.messages.add(aMsg);
+    }
+
+    public ArrayList<Message> getMessages(){
+        return messages;
     }
 
     public User getCreator(){
@@ -47,19 +61,5 @@ public class Chatroom {
 
     public void setRoomName(String roomName) {
         this.roomName = roomName;
-    }
-
-    public User getParticipantById(String userID){
-        for(User participant : getParticipants() ){
-            String userIDstring = participant.getUserID();
-            if(userIDstring.equals(userID)){
-                return participant;
-            }
-        }
-        return null;
-    }
-
-    public void addMessage(Message aMsg) {
-        this.messages.add(aMsg);
     }
 }
