@@ -48,24 +48,35 @@ $(window).on('load', function(){
             });
 
         function getMessages() {
-            $.get("/getMessages", {roomID: roomID}, function (chatroomMessages) {
-                let output =
-                    "<table class='table table-striped table-bordered'>" +
-                    "<tr>" +
-                    "<th>Username</th>" + "<th>Timestamp</th>" + "<th>Message</th>" +
-                    "</tr>";
+            $.get("/getAllParticipants", {roomID:roomID}, function(chatroomParticipants){
+                $.get("/getMessages", {roomID: roomID}, function (chatroomMessages) {
+                    let username = null;
 
-                // TODO: sørge for at username blir printet ut i stedet for userID
-                for (const msg of chatroomMessages.reverse()) {
-                    output +=
+                    let output =
+                        "<table class='table table-striped table-bordered'>" +
                         "<tr>" +
-                        "<td>" + msg.userID + "</td>" + "<td>" + msg.timestamp + "</td>" + "<td>" + msg.message + "</td>"
-                    "</tr>";
-                }
-                output += "</table>";
-                $("#allMsgs").empty().html(output);
+                        "<th>Username</th>" + "<th>Timestamp</th>" + "<th>Message</th>" +
+                        "</tr>";
+                    
+                    for (const msg of chatroomMessages.reverse()) {
+                        for (const participant of chatroomParticipants){
+                            if (msg.userID === participant.userID){
+                                username = participant.username;
+                            }
+                        }
+
+                        output +=
+                            "<tr>" +
+                            "<td>" + username + "</td>" + "<td>" + msg.timestamp + "</td>" + "<td>" + msg.message + "</td>"
+                        "</tr>";
+                    }
+                    output += "</table>";
+                    $("#allMsgs").empty().html(output);
+                });
             });
-        }
+
+        } // getMessages() end
+
     });
 });
 
