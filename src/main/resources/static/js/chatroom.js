@@ -1,14 +1,48 @@
-
-
 $(window).on('load', function(){
     let urlObject = new URL(window.location.href);
     let roomID = urlObject.searchParams.get('chatroomID');
+    getMessages();
 
     let user = getUser();
     let data = {
         roomID : roomID,
         userID : user.userID
     };
+
+    function getMessages() {
+        $.get("/getAllParticipants", {roomID:roomID}, function(chatroomParticipants){
+            $.get("/getMessages", {roomID: roomID}, function (chatroomMessages) {
+                let username = null;
+
+                let output =
+                    "<table class='table table-striped table-bordered'>" +
+                        "<tr>" +
+                            "<th>Username</th>" +
+                            "<th>Timestamp</th>" +
+                            "<th>Message</th>" +
+                        "</tr>";
+
+                for (const msg of chatroomMessages.reverse()) {
+                    for (const participant of chatroomParticipants){
+                        if (msg.userID === participant.userID){
+                            username = participant.username;
+                        }
+                    }
+                    output +=
+                        "<tr>" +
+                            "<td>" + username + "</td>" +
+                            "<td>" + msg.timestamp + "</td>" +
+                            "<td>" + msg.message + "</td>" +
+                        "</tr>";
+                }
+                output += "</table>";
+                if(username!=null) {
+                    $("#allMsgs").empty().html(output);
+                }
+            });
+        });
+
+    }
 
     $.post("/addParticipant", data)
         .done(function () { // JavaScript promise: funksjonen kalles når post-kallet er ferdig.
@@ -40,45 +74,13 @@ $(window).on('load', function(){
             roomID : roomID,
             userID : user.userID,
             msg : msg
-        }
+        };
 
         $.post("/addMessage", msgData)
             .done(function () { // JavaScript promise: funksjonen kalles når post-kallet er ferdig.
                 getMessages();  // (sørger for at getMessages() blir kallt etter vi har lagt til bruker)
+                $("#message").html('');
             });
-
-
-        function getMessages() {
-            $.get("/getAllParticipants", {roomID:roomID}, function(chatroomParticipants){
-                $.get("/getMessages", {roomID: roomID}, function (chatroomMessages) {
-                    let username = null;
-
-                    let output =
-                        "<table class='table table-striped table-bordered'>" +
-                        "<tr>" +
-                        "<th>Username</th>" + "<th>Timestamp</th>" + "<th>Message</th>" +
-                        "</tr>";
-
-                    for (const msg of chatroomMessages.reverse()) {
-                        for (const participant of chatroomParticipants){
-                            if (msg.userID === participant.userID){
-                                username = participant.username;
-                            }
-                        }
-
-                        output +=
-                            "<tr>" +
-                            "<td>" + username + "</td>" + "<td>" + msg.timestamp + "</td>" + "<td>" + msg.message + "</td>"
-                        "</tr>";
-                    }
-                    output += "</table>";
-                    if(username!=null) {
-                        $("#allMsgs").empty().html(output);
-                    }
-                });
-            });
-
-        } // getMessages() end
     });
 });
 
