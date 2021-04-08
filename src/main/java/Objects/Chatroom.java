@@ -1,5 +1,7 @@
 package Objects;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -8,15 +10,14 @@ public class Chatroom {
     private String roomName;
     private String roomID;
     private ArrayList<User> participants;
-    //TODO: Ordne slik at meldinger legges til i listen til chatrommet.
-    //private ArrayList<Message> messages;
+    private ArrayList<Message> messages;
 
     public Chatroom(String roomName, User creator) {
         this.creator = creator;
         this.roomName = roomName;
         this.roomID = UUID.randomUUID().toString();
         this.participants = new ArrayList<>();
-        //this.messages = null;
+        this.messages = new ArrayList<>();
     }
 
     public void addParticipant(String userID){
@@ -24,6 +25,10 @@ public class Chatroom {
             User participant = Users.getUser(userID);
             this.participants.add(participant);
         }
+    }
+
+    public ArrayList<Message> getMessages(){
+        return messages;
     }
 
     public ArrayList<User> getParticipants(){
@@ -54,5 +59,9 @@ public class Chatroom {
             }
         }
         return null;
+    }
+
+    public void addMessage(Message aMsg) {
+        this.messages.add(aMsg);
     }
 }

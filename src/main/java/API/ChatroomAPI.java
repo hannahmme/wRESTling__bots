@@ -1,13 +1,11 @@
 package API;
 
-import Objects.Chatrooms;
-import Objects.Chatroom;
-import Objects.User;
-import Objects.Users;
+import Objects.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @RestController
@@ -53,9 +51,30 @@ public class ChatroomAPI {
     }
 
 
+    // TODO: ikke helt ferdig (A)
+    @PostMapping("/addMessage")
+    public void addMessage(String roomID, String userID, String msg){
+        ArrayList<Chatroom> list = Chatrooms.getChatrooms();
+        for(Chatroom chatroom : list){
+            String chatroomID = chatroom.getRoomID();
+            if(chatroomID.equals(roomID)){
+                Message aMsg = new Message(userID,msg, LocalDateTime.now().toString(),roomID);
+                chatroom.addMessage(aMsg);
+            }
+        }
+    }
 
-
-
+    @GetMapping("/getMessages")
+    public ArrayList<Message> getMessages(String roomID){
+        ArrayList<Chatroom> list = Chatrooms.getChatrooms();
+        for(Chatroom chatroom : list){
+            String chatroomID = chatroom.getRoomID();
+            if(chatroomID.equals(roomID)){
+                return chatroom.getMessages();
+            }
+        }
+        return null;
+    }
 
 
 }

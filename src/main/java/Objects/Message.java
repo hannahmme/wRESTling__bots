@@ -1,32 +1,32 @@
 package Objects;
 
 public class Message {
-    private User user;
+    private String userID;
     private String message;
     private String timestamp;
-    private int roomID;
+    private String roomID;
 
-    public Message(User user, String message, String timestamp, int roomID){
-        this.user = user;
+    public Message(String userID, String message, String timestamp, String roomID){
+        this.userID = userID;
         this.message = message;
-        this.timestamp = message;
+        this.timestamp = timestamp;
         this.roomID = roomID;
     }
 
-    public int getRoomID() {
+    public String getRoomID() {
         return roomID;
     }
 
-    public void setRoomID(int roomID) {
+    public void setRoomID(String roomID) {
         this.roomID = roomID;
     }
 
-    public User getUser() {
-        return user;
+    public String getUser() {
+        return userID;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(String userID) {
+        this.userID = userID;
     }
 
     public String getMessage() {

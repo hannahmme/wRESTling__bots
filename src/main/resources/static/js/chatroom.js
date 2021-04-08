@@ -32,31 +32,39 @@ $(window).on('load', function(){
         });
     }
 
-
-
-    /* $.get("/printMsgs", function(allMsgs) {
-         formatMsgTable(allMsgs);
-     });*/
-
-    // method to format
-    function formatMsgTable(allmsg) {
-        let out =
-            "<table class='table table-striped table-bordered'>" +
-            "<tr>" +
-            "<th>Sent</th>" +
-            "<th>User</th>" +
-            "<th>Messsage</th>" +
-            "</tr>";
-        for (const msg of allmsg) {
-            out +=
-                "<tr>" +
-                "<td>" + msg.timestamp + "</td>" +
-                "<td>" + msg.user + "</td>" +
-                "<td>" + msg.message + "</td>" +
-                "</tr>";
-        }
-        $("#allmsg").html(out);
+    let msg = $("#message").val();
+    let msgData = {
+        roomID : roomID,
+        userID : user.userID,
+        msg : msg
     }
+
+    // TODO: ikke ferdig med å skrive ut meldinger - må legge til sånn at når knappen trykkes på
+    // kjøres denne metoden
+    $.post("/addMessage", msgData)
+        .done(function () { // JavaScript promise: funksjonen kalles når post-kallet er ferdig.
+            getMessages();  // (sørger for at getMessages() blir kallt etter vi har lagt til bruker)
+        });
+
+    function getMessages(){
+        $.get("/getMessages", {roomID:roomID}, function(chatroomMessages){
+            let output =
+                "<table class='table table-striped table-bordered'>" +
+                "<tr>" +
+                "<th>Username</th>" + "<th>Timestamp</th>" + "<th>Username</th>" +
+                "</tr>";
+
+            for (const msg of chatroomMessages){
+                output +=
+                    "<tr>" +
+                    "<td>" + msg.username + "</td>" + "<td>" + msg.timestamp + "</td>" + "<td>" + msg.message + "</td>"
+                    "</tr>";
+            }
+            output += "</table>";
+            $("#allMsgs").empty().html(output);
+        });
+    }
+
 });
 
 
