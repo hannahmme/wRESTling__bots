@@ -8,6 +8,7 @@
     <title>Chatroom</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="js/mainPage.js"></script>
+    <script src="js/utils/cookieUtils.js"></script>
 </head>
 <body>
 
@@ -18,20 +19,27 @@
   for å velge rommet.
   Se Transaksjon.js i nettbank! Der Tor har laget en dropdown helt øverst-->
 
-        <div class="jumbotron" style="background-color: #cecdfc; color: black">
-            <h1>Welcome to the chatrooms</h1>
+    <div class="jumbotron" style="background-color: #cecdfc; color: black">
+        <h1>Welcome to the chatrooms</h1>
+        <div>
+            Logged in as: <span id="userLoggedIn"></span>
         </div>
+    </div>
 
+    <div class="container">
+        <div class="form-group">
+            <div id="card-container"></div>
+            <button id="createChatroom" class="btn btn-dark">Create a new chatroom</button>
+            <input id="roomName" type="text">
+            <span id="chatroomErrorMessage">You need to write a name to your chatroom. Please enter a suitble chatroom-name.</span>
 
-        <!-- knapp for å gå inn i chatrommet -->
-        <div class="col-md-3">
-            <label>Roomname:</label>
-            <div id="select"></div>
-            <button id="joinChatroom" class="btn btn-dark">Choose this chatroom</button>
+            <!-- viser alle registrerte og online brukere-->
+            <div class="col-md-3">
+                <div id="allOnlineUsers"></div>
+            </div>
+
+            <button id="logOut" class="btn btn-dark">Log out</button>
         </div>
-
-<!-- viser alle registrerte og online brukere-->
-<div id="allonlineUsers"></div>
-
+    </div>
 </body>
 </html>

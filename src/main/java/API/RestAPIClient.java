@@ -5,6 +5,7 @@ package API;
 import Objects.Chatroom;
 import Objects.Message;
 import Objects.User;
+import Objects.Users;
 import org.junit.BeforeClass;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,24 +44,25 @@ public class RestAPIClient {
 
 // for startpage
     @PostMapping("/registerUser")
-    public void registerUser(User aUser){
-        System.out.println(aUser.getUsername());
-        activeUsers.add(aUser);
-
+    public User registerUser(String username){
+        User newUser = new User(username);
+        Users.addUser(newUser);
+        return newUser;
     }
 
-
-
-
-// for chatroom
-    // method to print all users active in htat chatroom?
+    //TODO: Flyttet liste over registrerte brukere til Users-klassen.
+    //TODO: Lage metode i Users som returnerer alle online-brukere. Kan brukes til å skrive ut
+    //      alle brukere på mainPage?
+/*
+    //method to print all registrered users, not users belonging to chatrooms
     @GetMapping("/printUsers")
-    public ArrayList<User> printUsers(int roomID){
+    public ArrayList<User> printUsers(String roomID){
         return activeUsers;
-    }
+    }*/
 
-    // getting and returning a list with all messages for room with roomID
-    @GetMapping("/printMsgs")
+
+    //TODO: Flytte til ChatroomAPI og kalle på spesifikke chatrommet sin liste med roomID
+  /*  @GetMapping("/printMsgs")
     public ArrayList<Message> printMsgs(int roomID){
         ArrayList<Message> ret = new ArrayList<>();
         for(Message msg : allMsg){
@@ -69,22 +71,5 @@ public class RestAPIClient {
             }
         }
         return ret;
-    }
-
-
-// for mainpage
-    // method to get and return all chatrooms available in an arraylist
-    @GetMapping("/getChatrooms")
-    public ArrayList<Chatroom> getAvailableChatrooms(){
-        return activeChatrooms;
-    }
-
-
-    // method to save new chatrooms to arraylist
-    @GetMapping("/newChatroom")
-    public void makeChatroom(Chatroom aChatroom){
-        activeChatrooms.add(aChatroom);
-    }
-
-
+    }*/
 }

@@ -1,22 +1,19 @@
 package Objects;
 
+import java.util.UUID;
+
 public class User {
 
-    private int userID;
+    private String userID;
     private String username;
 
-
-    public User(int userID, String username) {
-        this.userID = userID;
+    public User(String username) {
         this.username = username;
+        this.userID = UUID.randomUUID().toString();
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
     }
 
     public String getUsername() {

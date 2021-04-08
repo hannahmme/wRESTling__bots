@@ -1,27 +1,22 @@
 "use strict";
 $(function(){
-    console.log("hei");
+    $("#registerErrorMessage").hide();
 
     $("#regUser").click(function() {
         const username = $("#username").val();
-
-        // genererer først et USERID som returneres hit
-        $.get("/generateUserID",function(retur) {
-            const userID = retur;
-
-            // registrerer så en bruker med generert userID og skrevet inn username
-            const user = {
-                userID      : userID,
-                username    : username
-            }
-
-            // sending the object user into the controller-function "saveUser"
-            $.post("/registerUser", user, function() {
+        if(username.length === 0 || username === ' ' || username === null){
+            $("#registerErrorMessage").show();
+        }
+        else{
+            $("#registerErrorMessage").hide();
+            $.post("/registerUser", {username: username}, function(user) {
                 $("#username").val("");
+                setCookie("username", username, 1);
+                setCookie("userID", user.userID, 1);
 
                 // user goes to mainPage after logging in and getting an ID
                 $(location).attr('href', 'mainPage.html');
             });
-        });
+        }
     });
 });
