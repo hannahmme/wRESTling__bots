@@ -33,25 +33,27 @@ function getAllChatrooms(){
             card.classList.add('card-body');
 
             let cardContent =
-                "<div class='card' style='width:18rem'>" +
+                "<div class='card' id='"+room.roomID+"' style='width:18rem'>" +
                     "<div class='card-body'>" +
                         "<h5 class='card-title'>"+room.roomName+"</h5>" +
                         "<p class='card-text'>Some info here</p>" +
                         "<a id='goToChatRoom' href='chatroom.html?chatroomID="+room.roomID+"' class='btn btn-primary'>Go to chatroom</a>" +
-                        "<a id='deleteChatroom"+room.roomID+"' class='btn btn-primary'>Delete chatroom</a>" +
+                        "<a id='deleteChatroom' class='btn btn-danger'>Delete chatroom</a>" +
                     "</div>" +
                 "</div>";
 
             chatroomCardElement.innerHTML += cardContent;
 
-            $("#deleteChatroom"+room.roomID).click(function(){
-                $.post("/deleteChatroom", room);
-                location.reload();
-            });
         });
     });
 }
-
+    $("#deleteChatroom").click(function(){
+        var cardId = $(".card").attr('id');
+        const url = "/deleteChatroom?roomID="+cardId;
+        $.post(url, function(){
+            window.location.reload();
+        });
+    });
 // TODO: slette bruker fra alle lister brukeren er med i i java. må sende noe info i et get-kall?
 //When a user logs out, the cookies containing their userID and username will be removed
     $("#logOut").click(function(){
