@@ -67,7 +67,7 @@ public class ChatroomAPI {
             System.out.println(chatroom.getRoomID());
             String chatroomID = chatroom.getRoomID();
             if(chatroomID.equals(roomID)){
-                Chatrooms.chatrooms.remove(chatroom);
+                Chatrooms.getChatrooms().remove(chatroom);
                 System.out.println("Chatroom med id: " + roomID + " er slettet.");
                 break;
             }

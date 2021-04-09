@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Chatrooms {
 
-    public static ArrayList<Chatroom> chatrooms = new ArrayList<>();
+    private static ArrayList<Chatroom> chatrooms = new ArrayList<>();
 
     public void initialize() {
         chatrooms = new ArrayList<>();
