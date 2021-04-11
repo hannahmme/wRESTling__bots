@@ -84,6 +84,10 @@ $(window).on('load', function(){
                 getMessages();  // (sørger for at getMessages() blir kallt etter vi har lagt til bruker)
                 $("#message").html('');
             });
+
+        $.get("/addBotMessage")
+
+
     });
 
     //When a user logs out, the cookies containing their userID and username will be removed

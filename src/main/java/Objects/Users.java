@@ -17,7 +17,6 @@ public class Users {
         registeredUsers.add(user);
     }
 
-// TODO: brukes hvis vi skal skrive ut alle brukere på mainpage
     public static User getUser(String userID){
         for(User user : getRegisteredUsers()){
             String userIDstring= user.getUserID();

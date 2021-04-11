@@ -1,25 +1,32 @@
 package API;
 
 import Objects.*;
-import org.apache.tomcat.jni.Time;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class ChatroomAPI {
 
+    // add one room
     @PostMapping("/addOne")
     public void addOne(String roomName, User creator){
         Chatroom newChatroom = new Chatroom(roomName, creator);
         Chatrooms.addRoom(newChatroom);
+
+        // legger moderator til i chatrommet
+        List<User> users = Users.getRegisteredUsers();
+        for(User u : users){
+            if(u.getUsername().equals("Moderator")){
+                newChatroom.addParticipant(u.getUserID());
+            }
+        }
+
         System.out.println("Chatroom opprettet med navn: " + newChatroom.getRoomName() + " og id: " + newChatroom.getRoomID());
     }
 
@@ -92,9 +99,15 @@ public class ChatroomAPI {
                 String formattedTime = time.format(formatter);
                 Message aMsg = new Message(userID, msg, formattedTime,roomID);
                 chatroom.addMessage(aMsg);
+
+                Message botAnswer = Chatbots.respond(aMsg);
+                if(botAnswer!=null) {
+                    chatroom.addMessage(botAnswer);
+                }
             }
         }
     }
+
 
     @GetMapping("/getMessages")
     public ArrayList<Message> getMessages(String roomID){
