@@ -14,10 +14,10 @@ public class Chatbots {
     static User bot4;
 
     public static void initialize() {
-        bot1 = new User("Moderator");
-        bot2 = new User("Caroline");
-        bot3 = new User("Hannah");
-        bot4 = new User("Amalie");
+        bot1 = new User("Moderator (bot)");
+        bot2 = new User("Caroline (bot)");
+        bot3 = new User("Hannah (bot)");
+        bot4 = new User("Amalie (bot)");
 
         Users.addUser(bot1);
         Users.addUser(bot2);

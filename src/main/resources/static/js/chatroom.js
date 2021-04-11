@@ -86,9 +86,8 @@ $(window).on('load', function(){
             });
 
         $.get("/addBotMessage")
-
-
     });
+
 
     //When a user logs out, the cookies containing their userID and username will be removed
     $("#logOut").click(function(){
@@ -97,12 +96,22 @@ $(window).on('load', function(){
         $(location).attr('href', 'index.html');
     });
 
-
     //When a user logs out, the cookies containing their userID and username will be removed
     $("#goBack").click(function(){
         $(location).attr('href', 'mainPage.html');
     });
 
+    $("#leaveRoom").click(function(){
+        let data = {
+            roomID : roomID,
+            userID : user.userID
+        };
+
+        $.post("/deleteUserFromRoom", data)
+            .done(function() {
+                $(location).attr('href', 'mainpage.html');
+            });
+    });
 });
 
 

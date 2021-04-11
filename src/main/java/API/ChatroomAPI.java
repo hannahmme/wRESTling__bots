@@ -54,11 +54,21 @@ public class ChatroomAPI {
         return null;
     }
 
-
-
     // TODO: slette bruker om hun trykker på logg ut knappen
     @PostMapping("/deleteUser")
     public void deleteUser(){
+
+    }
+
+    @PostMapping("/deleteUserFromRoom")
+    public void deleteUserFromRoom(String roomID, String userID){
+        ArrayList<Chatroom> list = Chatrooms.getChatrooms();
+        for(Chatroom chatroom : list){
+            String chatroomID = chatroom.getRoomID();
+            if(chatroomID.equals(roomID)){
+                chatroom.deleteParticipant(userID);
+            }
+        }
     }
 
     @GetMapping("/getAll")

@@ -33,6 +33,14 @@ public class Chatroom {
             User participant = Users.getUser(userID);
             this.participants.add(participant);
         }
+
+    }
+
+    public void deleteParticipant(String userID){
+        participants.removeIf(u -> u.getUserID().equals(userID));
+        for(User u : participants){
+            System.out.println(u);
+        }
     }
 
     public ArrayList<User> getParticipants(){

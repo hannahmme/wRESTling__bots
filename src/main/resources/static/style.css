@@ -19,7 +19,7 @@ div {
     text-align: center;
     position: relative;
     float: left;
-    width: 75%;
+    width: 65%;
     height: 270px;
     padding: 50px;
 }
@@ -28,7 +28,7 @@ div {
     background-color: #c8c8c8;
     position: relative;
     float: right;
-    width: 25%;
+    width: 35%;
     height: 270px;
     padding: 50px;
 }
@@ -48,7 +48,7 @@ div {
 .messages, .form-group {
     position: relative;
     float: left;
-    width: 75%;
+    width: 65%;
     padding-left: 50px;
     padding-right: 100px;
     padding-top: 5px;
@@ -56,7 +56,7 @@ div {
 
 .users{
     position: relative;
-    width: 25%;
+    width: 35%;
     padding-left: 20px;
     padding-right: 50px;
     padding-top: 5px;
@@ -80,13 +80,21 @@ div {
     background-color: #1c1c1c;
     color: #ffffff;
     border-radius: 8px;
-    padding: 5px;
+    padding: 2px;
 }
 
-.btn_logOut {
+.btn_logOut{
     background-color: #bc7171;
     color: #000000;
-    border-radius: 8px;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.btn_leaveRoom {
+    background-color: #eeca93;
+    color: #000000;
+    border-radius: 4px;
+    padding: 2px;
 }
 
 .index_logIn {
