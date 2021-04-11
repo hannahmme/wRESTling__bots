@@ -1,6 +1,7 @@
 package Objects;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Chatbots {
 
@@ -18,12 +19,52 @@ public class Chatbots {
         chatbots.add(negativebot);
     }
 
-    public static ArrayList<Chatbot> getChatbots() {
-        return chatbots;
+    // tar inn meldingen fra bruker og finner ut hva som skal svares
+    public String respond(String msg){
+
+        ArrayList<String> actions = new ArrayList<>(Arrays.asList("sing", "dance", "run", "eat"));
+        ArrayList<String> greetings = new ArrayList<>(Arrays.asList("hi", "hello", "yo", "howdy"));
+
+        String action_verb = "";
+        String greeting = "";
+
+        for(String verb : actions){
+            if (msg.contains(verb)){
+                action_verb = verb;
+            }
+        }
+
+        for(String g : greetings){
+            if (msg.contains(g)){
+                greeting = g;
+            }
+        }
+
+        return getResponse(action_verb, greeting);
+
+
     }
 
-    public static void addBot(Chatbot bot){
-        chatbots.add(bot);
+    private String getResponse(String action, String greeting){
+        String response;
+
+        // no greeting but verb
+        if(!action.equals("") & greeting.equals("")){
+            response = "cool. Let's " + action;
+        }
+        // no greeting nor verb
+        else if(action.equals("") & greeting.equals("")){
+            response = "";
+        }
+        // both greeting and verb
+        else if(!action.equals("") & !greeting.equals("")){
+            response = "Hello there! I would love to " + action;
+        }
+        else {
+            response = "HI! How are you?";
+        }
+
+        return response;
     }
 
 

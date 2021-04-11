@@ -1,0 +1,77 @@
+
+body {
+    font-size: 1.25rem;
+    font-family: sans-serif;
+}
+
+
+h1 {
+    font-size: 4rem;
+}
+
+div {
+    height: 100%
+}
+
+
+.left-side {
+    background-color: #e7e7e7;
+    text-align: center;
+    position: relative;
+    float: left;
+    width: 75%;
+    height: 270px;
+    padding: 50px;
+}
+
+.right-side {
+    background-color: #c8c8c8;
+    position: relative;
+    float: right;
+    width: 25%;
+    height: 270px;
+    padding: 50px;
+}
+
+
+.chatroom_container {
+    top: 50px;
+    display: table;
+    width: 100%;
+    background-color: #eeeeee;
+}
+
+.row{
+    padding-top: 15px;
+}
+
+.messages {
+    position: relative;
+    float: left;
+    width: 75%;
+    padding-left: 50px;
+    padding-right: 100px;
+    padding-top: 5px;
+}
+
+.users{
+    position: relative;
+    width: 25%;
+    padding-left: 20px;
+    padding-right: 50px;
+    padding-top: 5px;
+ }
+
+.form-group {
+    padding: 10px;
+}
+
+
+.chatrooms_container {
+    padding-top: 10px;
+}
+
+.indexheader {
+    background-color: #e7e7e7;
+    padding: 35px;
+}

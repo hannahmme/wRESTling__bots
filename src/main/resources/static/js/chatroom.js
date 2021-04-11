@@ -9,6 +9,9 @@ $(window).on('load', function(){
         userID : user.userID
     };
 
+    let userLoggedIn = document.getElementById("userLoggedIn");
+    userLoggedIn.innerHTML = user.username;
+
     function getMessages() {
         $.get("/getAllParticipants", {roomID:roomID}, function(chatroomParticipants){
             $.get("/getMessages", {roomID: roomID}, function (chatroomMessages) {
@@ -82,6 +85,20 @@ $(window).on('load', function(){
                 $("#message").html('');
             });
     });
+
+    //When a user logs out, the cookies containing their userID and username will be removed
+    $("#logOut").click(function(){
+        setCookie("username", null, 0);
+        setCookie("userID", null, 0);
+        $(location).attr('href', 'index.html');
+    });
+
+
+    //When a user logs out, the cookies containing their userID and username will be removed
+    $("#goBack").click(function(){
+        $(location).attr('href', 'mainPage.html');
+    });
+
 });
 
 

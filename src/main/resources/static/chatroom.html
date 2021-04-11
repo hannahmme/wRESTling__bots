@@ -2,6 +2,7 @@
 <html lang="en">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="Stylesheet" type="text/css" href="style.css">
 
 <head>
     <meta charset="UTF-8">
@@ -12,35 +13,49 @@
 </head>
 <body>
 
-<div class="jumbotron" style="background-color: #cecdfc; color: black">
-    <h1>Welcome to the chatroom!</h1>
+<div class='header' >
+    <div class="left-side" >
+        <h1>Her kan vi skrive "#navnPåRom"</h1>
+    </div>
+
+    <div class ="right-side">
+        Logged in as: <span id="userLoggedIn"></span>
+
+        </br></br>
+
+        <button id="goBack" style="background-color: #79be95; color: #000000; border-radius: 8px;">GO TO MAINPAGE</button>
+
+        </br></br>
+
+        <button id="logOut" style="background-color: #bc7171; color: #000000; border-radius: 8px;">LOG OUT</button>
+    </div>
+
 </div>
 
-<div class="container">
+<div class="chatroom_container">
     <div class="row">
-        <div class="col-sm-6">
-            <!--Navn på chatroom-->
-            <div id="chatmsg">
 
+        <div class="messages">
+
+            <div id="chatmsg">
                 <h3>Type your message here</h3>
                 <input type="text" id="message" placeholder="Enter a message!" maxlength="200" class="form-control">
                 <br/>
                 <button id="createMessage" class="btn btn-dark">Send message</button>
-
             </div>
-            <br/><br/>
 
-            <!-- Her skal det ligge  en liste som inneholder timestamp,
-            hvilken bruker som har sendt hvilken melding og meldingen-->
-            <h3>Message log</h3>
-            <div id="allMsgs"></div>
-
+            </br>
+            <div id="chatlog">
+                <h3>Message log</h3>
+                <div id="allMsgs"></div>
+            </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="users">
             <h3>Users in this chatroom</h3>
             <div id="allUsers"></div>
         </div>
+
     </div>
 </div>
 

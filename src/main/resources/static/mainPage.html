@@ -2,6 +2,7 @@
 <html lang="en">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="Stylesheet" type="text/css" href="style.css">
 
 <head>
     <meta charset="UTF-8">
@@ -12,29 +13,37 @@
 </head>
 <body>
 
-    <div class="jumbotron" style="background-color: #cecdfc; color: black">
-        <h1>Welcome to the chatrooms</h1>
-        <div>
-            Logged in as: <span id="userLoggedIn"></span>
+    <div class='header' >
+        <div class="left-side" >
+            <h1>Hello. Please choose a chatroom</h1>
         </div>
+
+        <div class ="right-side">
+            Logged in as: <span id="userLoggedIn"></span>
+
+            </br></br>
+
+            <button id="logOut" style="background-color: #bc7171; color: #000000; border-radius: 8px;">LOG OUT</button>
+        </div>
+
     </div>
 
-    <div class="container">
+    <div class="chatrooms_container">
         <div class="form-group">
             <div id="card-container"></div>
             <button id="createChatroom" class="btn btn-dark">Create a new chatroom</button>
             <input id="roomName" type="text">
             <span id="chatroomErrorMessage">You need to write a name to your chatroom. Please enter a suitble chatroom-name.</span>
 
+            </br>
+
             <!-- viser alle registrerte og online brukere-->
-            <div class="col-md-3">
+            <div>
                 <p>Online users on our platform</p>
                 <div id="allOnlineUsers"></div>
             </div>
-
             </br>
 
-            <button id="logOut" class="btn btn-dark">Log out</button>
         </div>
     </div>
 </body>

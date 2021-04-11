@@ -33,8 +33,8 @@ function getAllChatrooms(){
             card.classList.add('card-body');
 
             let cardContent =
-                "<div class='card' id='"+room.roomID+"' style='width:18rem'>" +
-                    "<div class='card-body'>" +
+                "<div class='card' id='"+room.roomID+"' style='width:30%; padding: 5px;'>" +
+                    "<div class='card-body' style='padding: 10px;'" +
                         "<h5 class='card-title'>"+room.roomName+"</h5>" +
                         "<p class='card-text'>Some info here</p>" +
                         "<a id='goToChatRoom' href='chatroom.html?chatroomID="+room.roomID+"' class='btn btn-primary'>Go to chatroom</a>" +
@@ -63,3 +63,10 @@ function getAllChatrooms(){
     });
 });
 
+function notifyUser(){
+
+
+
+
+
+}
