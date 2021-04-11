@@ -1,5 +1,6 @@
 $(function(){
     getAllChatrooms();
+    getAllUsers();
     $("#chatroomErrorMessage").hide();
     let userLoggedIn = document.getElementById("userLoggedIn");
     let user = getUser();
@@ -24,6 +25,25 @@ $(function(){
         }
     });
 
+    // function to get all users of chatrooms
+    function getAllUsers(){
+        $.get("/getAllUsers", function(users){
+            let output =
+                "<table class='table table-striped table-bordered'>" +
+                "<tr>" +
+                "<th>Username</th>" +
+                "</tr>";
+
+            for (const user of users){
+                output +=
+                    "<tr>" +
+                    "<td>" + user.username + "</td>" +
+                    "</tr>";
+            }
+            output += "</table>";
+            $("#allUsers").empty().html(output);
+        });
+    }
 function getAllChatrooms(){
     $.get("/getAll", function(allAvailableRooms){
         let chatroomCardElement = document.getElementById("card-container");
@@ -61,6 +81,11 @@ function getAllChatrooms(){
         setCookie("userID", null, 0);
         $(location).attr('href', 'index.html');
     });
+
+
+
+
+
 });
 
 function notifyUser(){

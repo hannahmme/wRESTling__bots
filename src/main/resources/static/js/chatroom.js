@@ -13,7 +13,7 @@ $(window).on('load', function(){
     userLoggedIn.innerHTML = user.username;
 
     function getMessages() {
-        $.get("/getAllParticipants", {roomID:roomID}, function(chatroomParticipants){
+        $.get("/getParticipants", {roomID:roomID}, function(chatroomParticipants){
             $.get("/getMessages", {roomID: roomID}, function (chatroomMessages) {
                 let username = null;
 
@@ -53,7 +53,7 @@ $(window).on('load', function(){
     });
 
     function getParticipants(){
-        $.get("/getAllParticipants", {roomID:roomID}, function(chatroomParticipants){
+        $.get("/getParticipants", {roomID:roomID}, function(chatroomParticipants){
             let output =
                 "<table class='table table-striped table-bordered'>" +
                     "<tr>" +

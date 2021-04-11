@@ -35,8 +35,8 @@ public class ChatroomAPI {
         }
     }
 
-    @GetMapping("/getAllParticipants")
-    public ArrayList<User> getAllParticipants(String roomID){
+    @GetMapping("/getParticipants")
+    public ArrayList<User> getParticipants(String roomID){
         ArrayList<Chatroom> list = Chatrooms.getChatrooms();
         for(Chatroom chatroom : list){
             String chatroomID = chatroom.getRoomID();
@@ -46,6 +46,8 @@ public class ChatroomAPI {
         }
         return null;
     }
+
+
 
     // TODO: slette bruker om hun trykker på logg ut knappen
     @PostMapping("/deleteUser")
@@ -104,6 +106,19 @@ public class ChatroomAPI {
             }
         }
         return null;
+    }
+
+
+    @PostMapping("/registerUser")
+    public User registerUser(String username){
+        User newUser = new User(username);
+        Users.addUser(newUser);
+        return newUser;
+    }
+
+    @GetMapping("/getAllUsers")
+    public ArrayList<User> getAllUsers(){
+        return Users.getRegisteredUsers();
     }
 
 

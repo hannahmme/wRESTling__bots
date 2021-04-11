@@ -45,7 +45,7 @@ div {
     padding-top: 15px;
 }
 
-.messages {
+.messages, .form-group {
     position: relative;
     float: left;
     width: 75%;
@@ -74,4 +74,26 @@ div {
 .indexheader {
     background-color: #e7e7e7;
     padding: 35px;
+}
+
+.btn_logIn, .btn_goBack {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.btn_logOut {
+    background-color: #bc7171;
+    color: #000000;
+    border-radius: 8px;
+}
+
+.index_logIn {
+    padding: 15px;
+}
+
+.index_logIn_btn{
+    padding-left: 112px;
+    padding-top: 5px;
 }
