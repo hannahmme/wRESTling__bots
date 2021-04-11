@@ -19,7 +19,7 @@ public class ChatroomAPI {
         Chatroom newChatroom = new Chatroom(roomName, creator);
         Chatrooms.addRoom(newChatroom);
 
-        // legger moderator til i chatrommet
+        // add moderator to chatroom
         List<User> users = Users.getRegisteredUsers();
         for(User u : users){
             if(u.getUsername().equals("Moderator")){
@@ -30,6 +30,7 @@ public class ChatroomAPI {
         System.out.println("Chatroom opprettet med navn: " + newChatroom.getRoomName() + " og id: " + newChatroom.getRoomID());
     }
 
+    //add new participant of chatroom
     @PostMapping("/addParticipant")
     public void addParticipant(String roomID, String userID){
         ArrayList<Chatroom> list = Chatrooms.getChatrooms();
@@ -42,6 +43,7 @@ public class ChatroomAPI {
         }
     }
 
+    //get list of participants of specific chatroom
     @GetMapping("/getParticipants")
     public ArrayList<User> getParticipants(String roomID){
         ArrayList<Chatroom> list = Chatrooms.getChatrooms();
@@ -55,11 +57,13 @@ public class ChatroomAPI {
     }
 
     // TODO: slette bruker om hun trykker på logg ut knappen
+    //remove user as registered user (delete user from application)
     @PostMapping("/deleteUser")
     public void deleteUser(){
 
     }
 
+    //delete user from specific chatroom
     @PostMapping("/deleteUserFromRoom")
     public void deleteUserFromRoom(String roomID, String userID){
         ArrayList<Chatroom> list = Chatrooms.getChatrooms();
@@ -71,12 +75,14 @@ public class ChatroomAPI {
         }
     }
 
+    //get all chatrooms
     @GetMapping("/getAll")
     public ArrayList<Chatroom> getAll(){
         return Chatrooms.getChatrooms();
     }
 
     // TODO: slette chatrom om ingen bruker det på lenge? eller med en knapp?
+    //delete chatroom
     @PostMapping("/deleteChatroom")
     public void deleteChatroom(String roomID){
         System.out.println("RoomID som skal slettes: " + roomID);
@@ -97,6 +103,7 @@ public class ChatroomAPI {
         }
     }
 
+    //add message to list of messages belonging specific chatroom
     @PostMapping("/addMessage")
     public void addMessage(String roomID, String userID, String msg){
         ArrayList<Chatroom> list = Chatrooms.getChatrooms();
@@ -118,7 +125,7 @@ public class ChatroomAPI {
         }
     }
 
-
+    //get messages from specific chatroom
     @GetMapping("/getMessages")
     public ArrayList<Message> getMessages(String roomID){
         ArrayList<Chatroom> list = Chatrooms.getChatrooms();
@@ -131,7 +138,7 @@ public class ChatroomAPI {
         return null;
     }
 
-
+    //register new user
     @PostMapping("/registerUser")
     public User registerUser(String username){
         User newUser = new User(username);
@@ -139,6 +146,7 @@ public class ChatroomAPI {
         return newUser;
     }
 
+    //get all registered users
     @GetMapping("/getAllUsers")
     public ArrayList<User> getAllUsers(){
         return Users.getRegisteredUsers();
