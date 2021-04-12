@@ -36,11 +36,9 @@ public class Chatroom {
 
     }
 
+    // deleting participant from one room
     public void deleteParticipant(String userID){
         participants.removeIf(u -> u.getUserID().equals(userID));
-        for(User u : participants){
-            System.out.println(u);
-        }
     }
 
     public ArrayList<User> getParticipants(){

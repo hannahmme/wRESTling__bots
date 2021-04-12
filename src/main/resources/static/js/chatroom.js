@@ -84,8 +84,6 @@ $(window).on('load', function(){
                 getMessages();  // (sørger for at getMessages() blir kallt etter vi har lagt til bruker)
                 $("#message").html('');
             });
-
-        $.get("/addBotMessage")
     });
 
 
@@ -96,7 +94,7 @@ $(window).on('load', function(){
         $(location).attr('href', 'index.html');
     });
 
-    //When a user logs out, the cookies containing their userID and username will be removed
+    // button to go back to the mainpage
     $("#goBack").click(function(){
         $(location).attr('href', 'mainPage.html');
     });

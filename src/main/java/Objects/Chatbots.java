@@ -1,28 +1,28 @@
 package Objects;
 
+import API.ChatroomAPI;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class Chatbots {
 
-    private static ArrayList<User> chatbots = new ArrayList<>();
     static User bot1;
     static User bot2;
     static User bot3;
     static User bot4;
 
     public static void initialize() {
-        bot1 = new User("Moderator (bot)");
+        bot1 = new User("Moderator");
         bot2 = new User("Caroline (bot)");
         bot3 = new User("Hannah (bot)");
         bot4 = new User("Amalie (bot)");
 
         Users.addUser(bot1);
-        Users.addUser(bot2);
-        Users.addUser(bot3);
-        Users.addUser(bot4);
     }
 
     // tar inn meldingen fra bruker og finner ut hva som skal svares
@@ -76,7 +76,7 @@ public class Chatbots {
             response = null;
         }
         // both greeting and verb
-        else if(!action.equals("") & !greeting.equals("")){
+        else if(!action.equals("")){
             response = "Hello there! I would love to " + action;
         }
         else {
@@ -86,5 +86,16 @@ public class Chatbots {
         return response;
     }
 
+
+    // code to genereate new chatrooms
+    public static void generateChatroom(int i){
+        String roomName = new String [] {"Cats","Disney","Coding","Dogs", "Reading", "Gaming"}[i];
+
+        Chatroom cr = new Chatroom(roomName, bot1);
+        Chatrooms.addRoom(cr);
+
+        // add moderator to chatroom
+        cr.addParticipant(bot1.getUserID());
+    }
 
 }

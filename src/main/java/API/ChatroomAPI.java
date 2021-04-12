@@ -59,7 +59,7 @@ public class ChatroomAPI {
     // TODO: slette bruker om hun trykker på logg ut knappen
     //remove user as registered user (delete user from application)
     @PostMapping("/deleteUser")
-    public void deleteUser(){
+    public void deleteUser(User aUser){
 
     }
 

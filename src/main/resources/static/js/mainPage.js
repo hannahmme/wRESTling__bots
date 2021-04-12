@@ -74,6 +74,8 @@ function getAllChatrooms(){
             window.location.reload();
         });
     });
+
+
 // TODO: slette bruker fra alle lister brukeren er med i i java. må sende noe info i et get-kall?
 //When a user logs out, the cookies containing their userID and username will be removed
     $("#logOut").click(function(){
@@ -83,15 +85,4 @@ function getAllChatrooms(){
     });
 
 
-
-
-
 });
-
-function notifyUser(){
-
-
-
-
-
-}

@@ -1,4 +1,4 @@
-$(function(){
+/*$(function(){
     aliceBot();
 });
 
@@ -35,4 +35,4 @@ function aliceBot(){
     if(listOfMessages !== 0){
         sendRandomMessage(roomID, alice.userID, listOfAnswers);
     }
-}
+}*/

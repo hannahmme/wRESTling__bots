@@ -17,6 +17,10 @@ public class Users {
         registeredUsers.add(user);
     }
 
+    public static void deleteUser(User user){
+        registeredUsers.remove(user);
+    }
+
     public static User getUser(String userID){
         for(User user : getRegisteredUsers()){
             String userIDstring= user.getUserID();
