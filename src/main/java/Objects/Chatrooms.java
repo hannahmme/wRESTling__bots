@@ -19,5 +19,8 @@ public class Chatrooms {
         chatrooms.add(room);
     }
 
+    public static void deleteRoom(Chatroom room){
+        chatrooms.remove(room);
+    }
 
 }

@@ -15,19 +15,23 @@ public class Oblig2DatSkyApplication {
         Chatbots.initialize();
 
         // making a new chatroom every 1minute in 5 minutes
-        for (int i = 0; i <= 5; i++){
+        for (int i = 0; i <= 5; i++) {
             int finalI = i;
             new java.util.Timer().schedule(
 
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        Chatbots.generateChatroom(finalI);
-                    }
-                },
-                10000
-        );
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            Chatbots.generateChatroom(finalI);
+                        }
+                    },
+                    10000
+            );
             TimeUnit.MINUTES.sleep(1);
+        }
+
+        while (true) {
+            Chatbots.checkIllegalRooms();
         }
     }
 }
