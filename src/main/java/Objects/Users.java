@@ -18,7 +18,13 @@ public class Users {
     }
 
     public static void deleteUser(User user){
-        registeredUsers.remove(user);
+        for(User aUser : registeredUsers){
+            String UID = aUser.getUserID();
+            System.out.println("UserID i listen: " + UID);
+            if(UID.equals(user.getUserID())){
+                registeredUsers.remove(user);
+            }
+        }
     }
 
     public static User getUser(String userID){

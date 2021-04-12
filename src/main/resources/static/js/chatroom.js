@@ -91,7 +91,14 @@ $(window).on('load', function(){
     $("#logOut").click(function(){
         setCookie("username", null, 0);
         setCookie("userID", null, 0);
-        $(location).attr('href', 'index.html');
+
+        let data1 = {
+            userID : user.userID
+        };
+
+        $.post("/deleteUser", data1).done(function(){
+            $(location).attr('href', 'index.html');
+        });
     });
 
     // button to go back to the mainpage
