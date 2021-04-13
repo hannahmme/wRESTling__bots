@@ -2,7 +2,7 @@
 $("#connectPush").click(function(){
 
     // TODO: Could not connect - could not find reason.
-    const webSocket = new WebSocket("ws://localhost:8080/pushnotifications");
+    const webSocket = new WebSocket("ws://localhost:8080/");
 
     // telling server that we are online
     webSocket.addEventListener('open', function (event) {

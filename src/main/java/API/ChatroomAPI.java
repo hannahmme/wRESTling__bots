@@ -175,4 +175,16 @@ public class ChatroomAPI {
         }
     }
 
+    @GetMapping("/getRoomname")
+    public String getRoomname(String roomID){
+        ArrayList<Chatroom> list = Chatrooms.getChatrooms();
+        for(Chatroom room : list){
+            String roomIDstring= room.getRoomID();
+            if(roomIDstring.equals(roomID)){
+                return room.getRoomName();
+            }
+        }
+        return null;
+    }
+
 }
