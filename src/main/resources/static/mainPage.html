@@ -16,6 +16,11 @@
     <div class='header' >
         <div class="left-side" >
             <h1>Hello. Please choose a chatroom</h1>
+            <button class="btn_connect" id="connectClicked">Turn on push-notifications</button>
+            <button class="btn_disconnect" id="disconnectClicked">Turn off push-notifications</button>
+            </br>
+
+            <div id="notifications"></div>
         </div>
 
         <div class ="right-side">
@@ -42,8 +47,13 @@
                 </br>
             </div>
 
+            <div class="notifications">
+                <h3>Notifications</h3>
+                <div id="allNotifications"></div>
+            </div>
+
             <div class="users">
-                <p>Online users on our platform</p>
+                <h3>Online users</h3>
                 <div id="allUsers"></div>
             </div>
 
