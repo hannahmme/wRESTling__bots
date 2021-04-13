@@ -98,17 +98,4 @@ public class Chatbots {
         cr.addParticipant(bot1.getUserID());
     }
 
-    public static void checkIllegalRooms(){
-        ArrayList<String> illegalCR = new ArrayList<>(Arrays.asList("Donald Trump", "Fish", "Python", "42"));
-        ArrayList<Chatroom> chatrooms = Chatrooms.getChatrooms();
-
-        for(Chatroom cr : chatrooms){
-            for(String s : illegalCR){
-                if(s.equals(cr.getRoomName())) {
-                    Chatrooms.deleteRoom(cr);
-                }
-            }
-        }
-    }
-
 }

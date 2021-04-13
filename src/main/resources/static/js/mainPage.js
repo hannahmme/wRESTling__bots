@@ -58,7 +58,6 @@ function getAllChatrooms(){
                         "<h5 class='card-title'>"+room.roomName+"</h5>" +
                         "<p class='card-text'>Some info here</p>" +
                         "<a id='goToChatRoom' href='chatroom.html?chatroomID="+room.roomID+"' class='btn btn-primary'>Go to chatroom</a>" +
-                        "<a id='deleteChatroom' class='btn btn-danger'>Delete chatroom</a>" +
                     "</div>" +
                 "</div>";
 
@@ -67,13 +66,6 @@ function getAllChatrooms(){
         });
     });
 }
-    $("#deleteChatroom").click(function(){
-        var cardId = $(".card").attr('id');
-        const url = "/deleteChatroom?roomID="+cardId;
-        $.post(url, function(){
-            window.location.reload();
-        });
-    });
 
 
 // TODO: slette bruker fra alle lister brukeren er med i i java. må sende noe info i et get-kall?

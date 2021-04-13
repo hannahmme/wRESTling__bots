@@ -30,8 +30,6 @@ public class Oblig2DatSkyApplication {
             TimeUnit.MINUTES.sleep(1);
         }
 
-        while (true) {
-            Chatbots.checkIllegalRooms();
-        }
+
     }
 }
