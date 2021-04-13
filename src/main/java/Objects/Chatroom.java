@@ -1,16 +1,14 @@
 package Objects;
 
-import org.springframework.util.StringUtils;
-
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class Chatroom {
-    private User creator;
+    private final User creator;
     private String roomName;
-    private String roomID;
-    private ArrayList<User> participants;
-    private ArrayList<Message> messages;
+    private final String roomID;
+    private final ArrayList<User> participants;
+    private final ArrayList<Message> messages;
 
     public Chatroom(String roomName, User creator) {
         this.creator = creator;
@@ -21,7 +19,7 @@ public class Chatroom {
     }
 
     public User getParticipantById(String userID){
-        if(userID.isEmpty() || userID.isBlank() || userID == null){
+        if(userID.isEmpty() || userID.isBlank()){
             return null;
         }
         for(User participant : getParticipants() ){
@@ -35,7 +33,7 @@ public class Chatroom {
     }
 
     public void addParticipant(String userID){
-        if(userID.isEmpty() || userID.isBlank() || userID == null){
+        if(userID.isEmpty() || userID.isBlank()){
             return;
         }
         if(getParticipantById(userID) == null){

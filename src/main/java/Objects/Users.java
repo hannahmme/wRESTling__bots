@@ -5,10 +5,6 @@ import java.util.ArrayList;
 public class Users {
     private static ArrayList<User> registeredUsers = new ArrayList<>();
 
-    public void initialize(){
-        registeredUsers = new ArrayList<>();
-    }
-
     public static ArrayList<User> getRegisteredUsers() {
         return registeredUsers;
     }

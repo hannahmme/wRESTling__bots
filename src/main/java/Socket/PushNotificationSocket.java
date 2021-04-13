@@ -15,7 +15,7 @@ public class PushNotificationSocket {
     public static String userID;
 
     // a list over all connected clients/ sessions (all have pressed the button)
-    private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
+    private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<>());
 
     // code for broadcasting to all other members of rooms if not in room
     public void broadcast(String message) throws IOException {
