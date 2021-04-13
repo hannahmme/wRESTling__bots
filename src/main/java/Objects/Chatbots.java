@@ -49,11 +49,7 @@ public class Chatbots {
 
         String answer = getResponse(action_verb, greeting);
 
-        LocalDateTime time = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedTime = time.format(formatter);
-
-        Message botMsg = new Message(bot1.getUserID(), answer, formattedTime, message.getRoomID());
+        Message botMsg = new Message(bot1.getUserID(), answer, message.getRoomID());
 
         if(botMsg.getMessage()!=null) {
             return botMsg;

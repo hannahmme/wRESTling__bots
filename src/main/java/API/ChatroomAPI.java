@@ -94,11 +94,8 @@ public class ChatroomAPI {
         for(Chatroom chatroom : list){
             String chatroomID = chatroom.getRoomID();
             if(chatroomID.equals(roomID)){
-                // formatting the time so it is readable
-                LocalDateTime time = LocalDateTime.now();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                String formattedTime = time.format(formatter);
-                Message aMsg = new Message(userID, msg, formattedTime,roomID);
+
+                Message aMsg = new Message(userID, msg, roomID);
                 chatroom.addMessage(aMsg);
 
                 Message botAnswer = Chatbots.respond(aMsg);
