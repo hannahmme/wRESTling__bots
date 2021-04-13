@@ -104,7 +104,7 @@ public class ChatroomAPI {
         chatroom.addMessage(message);
 
         // getting answer from modbot
-        Message modAnswer = Chatbots.respond(message);
+        Message modAnswer = Chatbots.modResp(message);
         if(modAnswer!=null) {
             chatroom.addMessage(modAnswer);
         }
@@ -113,7 +113,10 @@ public class ChatroomAPI {
         for(User u : chatroom.getParticipants()){
             if(u.getUsername().equals("Hannah (bot)")){
                 Message answer = Chatbots.hannahResp(message);
-                chatroom.addMessage(answer);
+                if(answer!=null){
+                    chatroom.addMessage(answer);
+                }
+
             }
             if(u.getUsername().equals("Caroline (bot)")){
                 Message answer = Chatbots.carolineResp(message);
