@@ -1,15 +1,10 @@
 package Objects;
 
-
 import java.util.ArrayList;
 
 public class Chatrooms {
 
     private static ArrayList<Chatroom> chatrooms = new ArrayList<>();
-
-    public void initialize() {
-        chatrooms = new ArrayList<>();
-    }
 
     public static Chatroom getChatroomById(String roomID){
         for(Chatroom chatroom : chatrooms){
@@ -28,11 +23,4 @@ public class Chatrooms {
     public static void addRoom(Chatroom room){
         chatrooms.add(room);
     }
-
-    public static void deleteRoom(Chatroom room){
-        chatrooms.remove(room);
-    }
-
-
-
 }
