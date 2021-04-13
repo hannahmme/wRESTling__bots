@@ -33,7 +33,5 @@ public class Oblig2DatSkyApplication {
             TimeUnit.MINUTES.sleep(1);
         }*/
 
-        // setting up the Server for push notifications
-
     }
 }

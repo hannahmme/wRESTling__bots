@@ -1,13 +1,7 @@
 package Objects;
 
-import API.ChatroomAPI;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 
 public class Chatbots {
 
@@ -23,6 +17,9 @@ public class Chatbots {
         bot4 = new User("Amalie (bot)");
 
         Users.addUser(bot1);
+        Users.addUser(bot2);
+        Users.addUser(bot3);
+        Users.addUser(bot4);
     }
 
     // tar inn meldingen fra bruker og finner ut hva som skal svares

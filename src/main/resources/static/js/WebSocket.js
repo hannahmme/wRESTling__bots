@@ -1,14 +1,12 @@
 // JS code for websockets
+$("#connectPush").click(function(){
 
-
-
-
-function openConnection(){
-    const webSocket = new WebSocket("ws://localhost:8080");
+    // TODO: Could not connect - could not find reason.
+    const webSocket = new WebSocket("ws://localhost:8080/pushnotifications");
 
     // telling server that we are online
     webSocket.addEventListener('open', function (event) {
-        webSocket.send("hello server");
+        webSocket.send('mainPage.js'.userID);
     });
 
     // getting feedback
@@ -18,28 +16,22 @@ function openConnection(){
 
 
 
-    console.log("Hei");
-
+    // handle socket opening e.g. client connecting to push-socket
     webSocket.onopen = function(message) {
-        processOpen(message)
+        console.log(message)
     };
 
 
-    webSocket.onmessage = onSocketMessage;
+    // handle incoming message
+    webSocket.onmessage = function(event) {
+        let incomingMessage = event.data;
+        showMessage(incomingMessage);
+    };
+});
 
+// show message in div #notifications
+function showMessage(message) {
+    document.getElementById('notifications').prepend(message);
 }
 
-let notifications;
 
-function processOpen(message){
-    notifications.add(message);
-}
-
-
-function onSocketMessage(event) {
-    if (event.data) {
-        console.log("HEIII");
-        document.getElementById("notifications").
-        innerHTML = ("Received message: " + JSON.stringify(event.data));
-    }
-}
