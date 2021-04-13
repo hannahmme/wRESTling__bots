@@ -2,6 +2,7 @@ $(window).on('load', function(){
     let urlObject = new URL(window.location.href);
     let roomID = urlObject.searchParams.get('chatroomID');
     getMessages();
+    $("#notLoggedInErrorMessage").hide();
 
     let user = getUser();
     let data = {
@@ -25,7 +26,8 @@ $(window).on('load', function(){
                             "<th>Message</th>" +
                         "</tr>";
 
-                for (const msg of chatroomMessages.reverse()) {
+                let reversedMessages = chatroomMessages.reverse();
+                for (const msg of reversedMessages) {
                     for (const participant of chatroomParticipants){
                         if (msg.userID === participant.userID){
                             username = participant.username;
@@ -60,30 +62,50 @@ $(window).on('load', function(){
                         "<th>Username</th>" +
                     "</tr>";
 
-            for (const participant of chatroomParticipants){
-                output +=
-                    "<tr>" +
-                        "<td>" + participant.username + "</td>" +
-                    "</tr>";
-            }
-            output += "</table>";
-            $("#allUsers").empty().html(output);
+                try{
+                    for (const participant of chatroomParticipants) {
+                        console.log("deltaker i chatrommet: ", participant);
+                        output +=
+                            "<tr>" +
+                            "<td>" + participant.username + "</td>" +
+                            "</tr>";
+                    }
+                output += "</table>";
+                $("#allUsers").empty().html(output);
+            }catch(err){
+                    console.log("Exception:", err);
+                    $("#usernameNullErrorMessage").innerHTML = err.message;
+                }
+
         });
     }
 
     $("#createMessage").click(function() {
         let msg = $("#message").val();
+        console.log("Melding i chatroom: ", msg);
         let msgData = {
             roomID : roomID,
             userID : user.userID,
             msg : msg
         };
 
-        $.post("/addMessage", msgData)
-            .done(function () { // JavaScript promise: funksjonen kalles når post-kallet er ferdig.
-                getMessages();  // (sørger for at getMessages() blir kallt etter vi har lagt til bruker)
-                $("#message").html('');
-            });
+        $.post("/addMessage", msgData, )
+
+        $.get("/getParticipants", function(listOfParticipants){
+            for(let participant of listOfParticipants){
+                console.log("Inne i for-løkken i listOfParticipants");
+                if(user.userID === participant.userID){
+                    $.post("/addMessage", msgData)
+                        .done(function () { // JavaScript promise: funksjonen kalles når post-kallet er ferdig.
+                            getMessages();  // (sørger for at getMessages() blir kalt etter vi har lagt til bruker)
+                            $("#message").html('');
+                            $("#notLoggedInErrorMessage").hide();
+                        });
+                }else{
+                    $("#notLoggedInErrorMessage").show();
+                }
+            }
+        });
     });
 
 

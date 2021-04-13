@@ -35,6 +35,7 @@ $(function(){
                 "</tr>";
 
             for (const user of users){
+                console.log("user : ", user);
                 output +=
                     "<tr>" +
                     "<td>" + user.username + "</td>" +

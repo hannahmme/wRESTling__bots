@@ -1,4 +1,4 @@
-/*$(function(){
+$(function() {
     aliceBot();
 });
 
@@ -6,10 +6,10 @@ let urlObject = new URL(window.location.href);
 let roomID = urlObject.searchParams.get('chatroomID');
 
 //registers a new bot as user on server
-function registerBot(bot){
-    return $.post("/registerUser", bot);
-    //TODO: Legge inn .done(function(){})
+function registerBot(username){
+    return $.post("/registerUser", {username: username});
 }
+
 
 //adding new bot as participant in chatroom
 function addBotAsParticipant(roomId, botID){
@@ -27,12 +27,20 @@ function getMessagesFromChatroom(roomID){
     return $.get("/getMessages", roomID);
 }
 
-function aliceBot(){
+function aliceBot() {
     const listOfAnswers = ["Hey, mip mip", "Ayooo, whats up?", "Hai there friend. How are you?"];
-    let alice = registerBot("Alice");
-    addBotAsParticipant(roomID, alice.userID);
-    const listOfMessages = getMessagesFromChatroom(roomID);
-    if(listOfMessages !== 0){
+
+    return registerBot("Alice")
+        .then(function(newUser){
+            return addBotAsParticipant(newUser);})
+        .then(function(newUser){
+        const listOfMessages = getMessagesFromChatroom(roomID);
+        if (listOfMessages !== 0) {
+            sendRandomMessage(roomID, result.userID, listOfAnswers);
+        }
+    })
+    //const listOfMessages = getMessagesFromChatroom(roomID);
+    /*if (listOfMessages !== 0) {
         sendRandomMessage(roomID, alice.userID, listOfAnswers);
-    }
-}*/
+    }*/
+}

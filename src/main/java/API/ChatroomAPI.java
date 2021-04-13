@@ -22,8 +22,12 @@ public class ChatroomAPI {
         // add moderator to chatroom
         List<User> users = Users.getRegisteredUsers();
         for(User u : users){
-            if(u.getUsername().equals("Moderator")){
-                newChatroom.addParticipant(u.getUserID());
+            try {
+                if (u.getUsername().equals("Moderator (bot)")) {
+                    newChatroom.addParticipant(u.getUserID());
+                }
+            }catch(NullPointerException e){
+                throw new NullPointerException("Can't find moderator to chatroom");
             }
         }
 
