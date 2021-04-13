@@ -32,7 +32,13 @@ public class ChatroomAPI {
 
     //add new participant of chatroom
     @PostMapping("/addParticipant")
-    public void addParticipant(String roomID, String userID){
+    public String addParticipant(String roomID, String userID){
+        if(userID.isEmpty() || userID.isBlank() || userID == null){
+            return "User not registered.";
+        }
+        if(roomID.isEmpty() || roomID.isBlank() || roomID == null){
+            return "RoomID is not set.";
+        }
         ArrayList<Chatroom> list = Chatrooms.getChatrooms();
         for(Chatroom chatroom : list){
             String chatroomID = chatroom.getRoomID();
@@ -41,6 +47,7 @@ public class ChatroomAPI {
                 System.out.println(chatroom.getRoomName() + " har antall deltakere: " + chatroom.getParticipants().size());
             }
         }
+        return null;
     }
 
     //get list of participants of specific chatroom

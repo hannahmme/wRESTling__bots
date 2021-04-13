@@ -4,6 +4,15 @@ $(function(){
     $("#chatroomErrorMessage").hide();
     let userLoggedIn = document.getElementById("userLoggedIn");
     let user = getUser();
+
+    if (user.userID === null || user.userID === '') {
+        window.alert("You need to be a registered user to be in this chatroom.");
+        setTimeout(function () {
+            window.location.href = 'http://localhost:8080/index.html';
+        })
+    }
+
+    if(user.userID === null || user.userID === ''){}
     userLoggedIn.innerHTML = user.username;
 
     $("#createChatroom").click(function(){
