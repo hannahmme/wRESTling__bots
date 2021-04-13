@@ -98,7 +98,7 @@ $(window).on('load', function(){
         $.post("/addMessage", msgData)
             .done(function () { // JavaScript promise: funksjonen kalles når post-kallet er ferdig.
                 getMessages();  // (sørger for at getMessages() blir kallt etter vi har lagt til bruker)
-                $("#message").html('');
+                $("#message").val("");
             });
     });
 
