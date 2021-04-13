@@ -49,11 +49,7 @@ public class Chatbots {
 
         String answer = getResponse(action_verb, greeting);
 
-        LocalDateTime time = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedTime = time.format(formatter);
-
-        Message botMsg = new Message(bot1.getUserID(), answer, formattedTime, message.getRoomID());
+        Message botMsg = new Message(bot1.getUserID(), answer, message.getRoomID());
 
         if(botMsg.getMessage()!=null) {
             return botMsg;
@@ -96,19 +92,6 @@ public class Chatbots {
 
         // add moderator to chatroom
         cr.addParticipant(bot1.getUserID());
-    }
-
-    public static void checkIllegalRooms(){
-        ArrayList<String> illegalCR = new ArrayList<>(Arrays.asList("Donald Trump", "Fish", "Python", "42"));
-        ArrayList<Chatroom> chatrooms = Chatrooms.getChatrooms();
-
-        for(Chatroom cr : chatrooms){
-            for(String s : illegalCR){
-                if(s.equals(cr.getRoomName())) {
-                    Chatrooms.deleteRoom(cr);
-                }
-            }
-        }
     }
 
 }

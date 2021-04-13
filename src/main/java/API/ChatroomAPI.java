@@ -87,28 +87,6 @@ public class ChatroomAPI {
         return Chatrooms.getChatrooms();
     }
 
-    // TODO: slette chatrom om ingen bruker det på lenge? eller med en knapp?
-    //delete chatroom
-    @PostMapping("/deleteChatroom")
-    public void deleteChatroom(String roomID){
-        System.out.println("RoomID som skal slettes: " + roomID);
-        ArrayList<Chatroom> list = Chatrooms.getChatrooms();
-        System.out.println("RoomIDs før sletting: ");
-        for(Chatroom chatroom : list){
-            System.out.println(chatroom.getRoomID());
-            String chatroomID = chatroom.getRoomID();
-            if(chatroomID.equals(roomID)){
-                Chatrooms.getChatrooms().remove(chatroom);
-                System.out.println("Chatroom med id: " + roomID + " er slettet.");
-                break;
-            }
-        }
-        System.out.println("RoomIDs etter sletting: ");
-        for(Chatroom chatroom : list){
-            System.out.println(chatroom.getRoomID());
-        }
-    }
-
     //add message to list of messages belonging specific chatroom
     @PostMapping("/addMessage")
     public void addMessage(String roomID, String userID, String msg){
@@ -116,11 +94,8 @@ public class ChatroomAPI {
         for(Chatroom chatroom : list){
             String chatroomID = chatroom.getRoomID();
             if(chatroomID.equals(roomID)){
-                // formatting the time so it is readable
-                LocalDateTime time = LocalDateTime.now();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                String formattedTime = time.format(formatter);
-                Message aMsg = new Message(userID, msg, formattedTime,roomID);
+
+                Message aMsg = new Message(userID, msg, roomID);
                 chatroom.addMessage(aMsg);
 
                 Message botAnswer = Chatbots.respond(aMsg);

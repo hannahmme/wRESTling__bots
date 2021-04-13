@@ -1,16 +1,29 @@
 package Objects;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Message {
     private String userID;
     private String message;
     private String timestamp;
     private String roomID;
 
-    public Message(String userID, String message, String timestamp, String roomID){
+    public Message(String userID, String message, String roomID){
         this.userID = userID;
         this.message = message;
-        this.timestamp = timestamp;
+
+        // formatting the time so it is readable
+        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedTime = time.format(formatter);
+
+        this.timestamp = formattedTime;
         this.roomID = roomID;
+    }
+
+    public Message(){
+
     }
 
     public String getRoomID() {
