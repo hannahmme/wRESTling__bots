@@ -16,9 +16,8 @@ public class Message {
         // formatting the time so it is readable
         LocalDateTime time = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedTime = time.format(formatter);
 
-        this.timestamp = formattedTime;
+        this.timestamp = time.format(formatter);
         this.roomID = roomID;
     }
 

@@ -3,6 +3,7 @@ $(window).on('load', function(){
     let roomID = urlObject.searchParams.get('chatroomID');
 
     let user = getUser();
+
     let data = {
         roomID : roomID,
         userID : user.userID
@@ -19,6 +20,12 @@ $(window).on('load', function(){
 
     let userLoggedIn = document.getElementById("userLoggedIn");
     userLoggedIn.innerHTML = user.username;
+
+    $.get("/getRoomname", {roomID:roomID}, function(chatroomName){
+        let roomName = document.getElementById("roomName");
+        roomName.innerHTML = chatroomName;
+    });
+
 
     function getMessages() {
 
@@ -184,6 +191,10 @@ $(window).on('load', function(){
             location.reload();
         });
     });
+
+
+
+
 
 
 });

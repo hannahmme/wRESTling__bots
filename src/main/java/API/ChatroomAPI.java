@@ -26,7 +26,6 @@ public class ChatroomAPI {
                 newChatroom.addParticipant(u.getUserID());
             }
         }
-
         System.out.println("Chatroom opprettet med navn: " + newChatroom.getRoomName() + " og id: " + newChatroom.getRoomID());
     }
 
@@ -114,7 +113,6 @@ public class ChatroomAPI {
                 if(answer!=null){
                     chatroom.addMessage(answer);
                 }
-
             }
             if(u.getUsername().equals("Caroline (bot)")){
                 Message answer = Chatbots.carolineResp(message);
@@ -124,9 +122,7 @@ public class ChatroomAPI {
                 Message answer = Chatbots.amalieResp(message);
                 chatroom.addMessage(answer);
             }
-
         }
-
         return "OK, message sent";
     }
 
@@ -173,4 +169,16 @@ public class ChatroomAPI {
         }
     }
 
+    //Get name of chat room
+    @GetMapping("/getRoomname")
+    public String getRoomname(String roomID){
+        ArrayList<Chatroom> list = Chatrooms.getChatrooms();
+        for(Chatroom room : list){
+            String roomIDstring= room.getRoomID();
+            if(roomIDstring.equals(roomID)){
+                return room.getRoomName();
+            }
+        }
+        return null;
+    }
 }

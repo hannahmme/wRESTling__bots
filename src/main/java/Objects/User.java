@@ -1,11 +1,9 @@
 package Objects;
 
-import javax.management.Notification;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class User {
-    private String userID;
+    private final String userID;
     private String username;
 
     public User(String username) {

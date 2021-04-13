@@ -18,7 +18,7 @@
 
 <div class='header' >
     <div class="left-side" >
-        <h1>Her kan vi skrive "#navnPåRom"</h1>
+        <h1>Welcome to chat room: <span id="roomName"></span></h1>
     </div>
 
     <div class ="right-side">
@@ -26,11 +26,10 @@
 
         </br>
 
-        <button class="btn_goBack" id="goBack">GO BACK</button>
+        <button class="btn_goBack" id="goBack">Go to mainpage</button>
         </br></br>
 
-        <button class="btn_logOut" id="logOut">LOG OUT</button>
-        </br></br>
+        <button class="btn_logOut" id="logOut">Log out</button>
 
         <button class="btn_leaveRoom" id="leaveRoom">Leave room</button>
     </div>
@@ -46,7 +45,7 @@
                 <h3>Type your message here</h3>
                 <input type="text" id="message" placeholder="Enter a message!" maxlength="200" class="form-control">
                 <br/>
-                <button id="createMessage" class="btn btn-dark">Send message</button>
+                <button class="btn_createMsg" id="createMessage">Send message</button>
 
             </br></br></br>
                 <h3>Message log</h3>
@@ -55,17 +54,15 @@
         </div>
 
         <div class="notifications">
-            <h3>Notifications</h3>
+            <!--<h3>Notifications</h3>-->
             <div id="allNotifications"></div>
         </div>
 
 
         <div class="users">
-            <button id="addHannah" class="btn btn-dark">Add Hannah</button>
-            </br></br>
-            <button id="addCaroline" class="btn btn-dark">Add Caroline</button>
-            </br></br>
-            <button id="addAmalie" class="btn btn-dark">Add Amalie</button>
+            <button class="btn_addHannah" id="addHannah">Add Hannah</button>
+            <button class="btn_addCaroline" id="addCaroline">Add Caroline</button>
+            <button class="btn_addAmalie" id="addAmalie">Add Amalie</button>
             </br></br>
             <h3>Users in this chatroom</h3>
             <div id="allUsers"></div>
