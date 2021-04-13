@@ -1,3 +1,5 @@
+// Websocket Server Endpoint
+
 package Socket;
 
 import java.io.IOException;
