@@ -102,10 +102,30 @@ public class ChatroomAPI {
         }
         Message message = new Message(userID, msg, roomID);
         chatroom.addMessage(message);
-        Message botAnswer = Chatbots.respond(message);
-        if(botAnswer!=null) {
-            chatroom.addMessage(botAnswer);
+
+        // getting answer from modbot
+        Message modAnswer = Chatbots.respond(message);
+        if(modAnswer!=null) {
+            chatroom.addMessage(modAnswer);
         }
+
+        // getting answers from other bots if they are added to the room
+        for(User u : chatroom.getParticipants()){
+            if(u.getUsername().equals("Hannah (bot)")){
+                Message answer = Chatbots.hannahResp(message);
+                chatroom.addMessage(answer);
+            }
+            if(u.getUsername().equals("Caroline (bot)")){
+                Message answer = Chatbots.carolineResp(message);
+                chatroom.addMessage(answer);
+            }
+            if(u.getUsername().equals("Amalie (bot)")){
+                Message answer = Chatbots.amalieResp(message);
+                chatroom.addMessage(answer);
+            }
+
+        }
+
         return "OK, message sent";
     }
 
