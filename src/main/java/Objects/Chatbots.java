@@ -91,7 +91,8 @@ public class Chatbots {
     }
 
 
-    // code to genereate new chatrooms
+    //TODO: Kommentert ut enn så lenge siden debugger hang seg opp
+ /*   // code to genereate new chatrooms
     public static void generateChatroom(int i){
         String roomName = new String [] {"Cats","Disney","Coding","Dogs", "Reading", "Gaming"}[i];
 
@@ -100,6 +101,6 @@ public class Chatbots {
 
         // add moderator to chatroom
         cr.addParticipant(bot1.getUserID());
-    }
+    }*/
 
 }
