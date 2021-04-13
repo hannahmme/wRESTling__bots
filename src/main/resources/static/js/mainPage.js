@@ -75,14 +75,36 @@ function getAllChatrooms(){
         });
     });
 
-
-// TODO: slette bruker fra alle lister brukeren er med i i java. må sende noe info i et get-kall?
-//When a user logs out, the cookies containing their userID and username will be removed
+    //When a user logs out, the cookies containing their userID and username will be removed, the user will be
+    // removed from the chatrooms he is participating in and removed from the list of users
     $("#logOut").click(function(){
+        let userLoggedIn = {
+            userID : user.userID
+        };
+
+        $.get("/getAll", function(allAvailableRooms){
+            $.each(allAvailableRooms, function(counter, room){
+                $.get("/getParticipants", {roomID:room.roomID}, function(chatroomParticipants){
+                    for(const p of chatroomParticipants){
+                        let participant = {
+                            roomID : room.roomID,
+                            userID : p.userID
+                        };
+
+                        if(participant.userID === userLoggedIn.userID){
+                            $.post("/deleteUserFromRoom", participant).done(function(){
+                            });
+                        }
+                    }
+                });
+            });
+        });
+        $.post("/deleteUser", userLoggedIn);
+        $(location).attr('href', 'index.html');
         setCookie("username", null, 0);
         setCookie("userID", null, 0);
-        $(location).attr('href', 'index.html');
     });
+
 
 
 });
