@@ -44,7 +44,9 @@ $(function(){
             $("#allUsers").empty().html(output);
         });
     }
-function getAllChatrooms(){
+
+    // function to get and display all chatrooms
+    function getAllChatrooms(){
     $.get("/getAll", function(allAvailableRooms){
         let chatroomCardElement = document.getElementById("card-container");
 
@@ -98,5 +100,12 @@ function getAllChatrooms(){
     });
 
 
+    // user wants to receive push notifications
+    $("#connectPush").click(function(){
+        // post because it will not return anything, only start a session
+        $.post("/activatePush", user);
+        // reload location every 10secs?
+        location.reload();
+    });
 
 });

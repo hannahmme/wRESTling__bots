@@ -1,79 +1,48 @@
 package Socket;
 
-import Objects.Message;
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 
 // the WebSocket is listening to this URI. This is the Endpoint-code
-@ServerEndpoint("/pushnotification/")
+@ServerEndpoint("/pushnotification")
 public class PushNotificationSocket {
 
-    private Session session;
-    private static final List<Message> messages = Collections.synchronizedList(new LinkedList<Message>());
+    public static String userID;
+    private static Session session;
 
-    // a list over all connected clients/ sessions
+    // a list over all connected clients/ sessions (all have pressed the button)
     private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
 
-    public static void broadcast(Message message) throws IOException, EncodeException {
+    // code for broadcasting to all other members of rooms if not in room
+    public void broadcast(String message) throws IOException {
         // a message is created and sent to all endpoints (everyone in that room)
-
+        for (Session s : sessions){
+            s.getBasicRemote().sendText(message);
+        }
     }
 
 
     @OnOpen
-    public void onOpen(Session session, String userID) throws IOException, EncodeException {
+    public void onOpen(Session session) {
         // get session and websocket connection. UserID is connected to a spesific session
-
-        sessions.add(session);
-        for (Message msg : messages) {
-            session.getBasicRemote().sendObject(msg);
-        }
-
-        /*
         this.session = session;
-        Message message = new Message();
-        message.setUserID(userID);
-        message.setMessage("Connected to push notifications");
-        broadcast(message);*/
+        sessions.add(session);
 
+        System.out.println("I onOpen");
 
     }
 
 
     //receives the information from the Websocket when a message is sent to Endpoint
     @OnMessage
-    public void onMessage(Session session, String msg) {
-
-        for (Session openSession : sessions) {
-            try {
-                openSession.getBasicRemote().sendObject(msg);
-            } catch (IOException | EncodeException e) {
-                sessions.remove(openSession);
-            }
-        }
-
-
-        /*
-        // handles new messages
-        System.out.println("Message from " + session.getId() + ": " + msg);
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    session.getBasicRemote().sendText("PushNotification");
-                } catch (IOException ex) {
-                    Logger.getLogger(PushNotificationSocket.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        };
-        Timer timer = new Timer(true);
-        timer.scheduleAtFixedRate(timerTask, 0, 5 * 1000);*/
+    public void onMessage(String msg) throws IOException {
+        // sending incoming message to all clients connected to room
+        broadcast(msg);
+        System.out.println("I onMessage");
     }
+
 
 
     @OnClose

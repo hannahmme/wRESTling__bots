@@ -9,15 +9,16 @@
     <title>Chatroom</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="js/mainPage.js"></script>
+    <script src="js/webSocket.js"></script>
     <script src="js/utils/cookieUtils.js"></script>
 </head>
-<body>
+<body onload="openConnection()">
 
     <div class='header' >
         <div class="left-side" >
-            <h1>Hello. Please choose a chatroom</h1>
-            <button class="btn_connect" id="connectClicked">Turn on push-notifications</button>
-            <button class="btn_disconnect" id="disconnectClicked">Turn off push-notifications</button>
+            <h1>Hello and Welcome</h1>
+            <button class="btn_connect" id="connectPush">Turn on push-notifications</button>
+            <button class="btn_disconnect" id="disconnectPush">Turn off push-notifications</button>
             </br>
 
             <div id="notifications"></div>

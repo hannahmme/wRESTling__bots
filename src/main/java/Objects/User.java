@@ -1,10 +1,12 @@
 package Objects;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class User {
     private String userID;
     private String username;
+    public static ArrayList<Notification> notifications;
 
     public User(String username) {
         this.username = username;
@@ -23,5 +25,11 @@ public class User {
         this.username = username;
     }
 
+    public static ArrayList<Notification> getNotifications() {
+        return notifications;
+    }
 
+    public static void setNotifications(ArrayList<Notification> notifications) {
+        User.notifications = notifications;
+    }
 }
