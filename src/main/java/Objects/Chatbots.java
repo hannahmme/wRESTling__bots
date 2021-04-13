@@ -22,7 +22,7 @@ public class Chatbots {
         Users.addUser(bot4);
     }
 
-    // tar inn meldingen fra bruker og finner ut hva som skal svares
+    // take in message from client, moderatorbot answers
     public static Message respond(Message message){
         String msg = message.getMessage();
 
@@ -45,7 +45,6 @@ public class Chatbots {
         }
 
         String answer = getResponse(action_verb, greeting);
-
         Message botMsg = new Message(bot1.getUserID(), answer, message.getRoomID());
 
         if(botMsg.getMessage()!=null) {
@@ -77,6 +76,18 @@ public class Chatbots {
         }
 
         return response;
+    }
+
+    public static Message hannahResp(Message msg){
+        return new Message(bot3.getUserID(), "ok", msg.getRoomID());
+    }
+
+    public static Message carolineResp(Message msg){
+        return new Message(bot2.getUserID(), "hi", msg.getRoomID());
+    }
+
+    public static Message amalieResp(Message msg){
+        return new Message(bot4.getUserID(), "hello", msg.getRoomID());
     }
 
 

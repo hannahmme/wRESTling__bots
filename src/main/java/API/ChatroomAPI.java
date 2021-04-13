@@ -145,7 +145,6 @@ public class ChatroomAPI {
 
                 for (User u : Users.getRegisteredUsers()) {
                     if (username.equals(u.getUsername())) {
-                        System.out.println(u.getUsername());
                         chatroom.addParticipant(u.getUserID());
                     }
                 }
