@@ -66,16 +66,7 @@ public class ChatroomAPI {
     //remove user as registered user (delete user from application)
     @PostMapping("/deleteUser")
     public void deleteUser(String userID){
-        ArrayList<User> list = Users.getRegisteredUsers();
-
-        //If user is still in rooms, delete from rooms aswell.
-
-        for(User user : list){
-            String UID = user.getUserID();
-            if(UID.equals(userID)){
-                Users.deleteUser(user);
-            }
-        }
+        Users.deleteUser(userID);
     }
 
     //delete user from specific chatroom

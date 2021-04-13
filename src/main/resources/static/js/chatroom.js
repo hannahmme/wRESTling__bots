@@ -21,43 +21,47 @@ $(window).on('load', function(){
     userLoggedIn.innerHTML = user.username;
 
     function getMessages() {
-        $.get("/getParticipants", {roomID:roomID}, function(chatroomParticipants){
-            $.get("/getMessages", {roomID: roomID}, function (chatroomMessages) {
-                let username = null;
 
-                let output =
-                    "<table class='table table-striped table-bordered'>" +
-                        "<tr>" +
+        $.get("/getParticipants", {roomID:roomID})
+            .done(function(chatroomParticipants){
+                $.get("/getMessages", {roomID: roomID})
+                    .done(function(chatroomMessages){
+                        let output =
+                            "<table class='table table-striped table-bordered'>" +
+                            "<tr>" +
                             "<th>Username</th>" +
                             "<th>Timestamp</th>" +
                             "<th>Message</th>" +
-                        "</tr>";
+                            "</tr>";
 
-                if(chatroomMessages === null || chatroomMessages.length === 0){
-                    console.error("Meldinger er tomme he ihå");
-                    return;
-                }
-
-                for (const msg of chatroomMessages.reverse()) {
-                    for (const participant of chatroomParticipants){
-                        if (msg.userID === participant.userID){
-                            username = participant.username;
+                        if(chatroomMessages === null || chatroomMessages.length === 0){
+                            $("#allMsgs").empty().html("No messages yet. Be the first to say something! :D");
+                            return;
                         }
-                    }
-                    output +=
-                        "<tr>" +
-                            "<td>" + username + "</td>" +
-                            "<td>" + msg.timestamp + "</td>" +
-                            "<td>" + msg.message + "</td>" +
-                        "</tr>";
-                }
-                output += "</table>";
-                if(username!=null) {
-                    $("#allMsgs").empty().html(output);
-                }
-            });
-        });
 
+                        for (const msg of chatroomMessages.reverse()) {
+                            let username = null;
+                            for (const participant of chatroomParticipants){
+                                if (msg.userID === participant.userID) {
+                                    username = participant.username;
+                                    break;
+                                }
+                            }
+                            if(username === null){
+                                username = "Deleted user";
+                            }
+
+                            output +=
+                                "<tr>" +
+                                "<td>" + username + "</td>" +
+                                "<td>" + msg.timestamp + "</td>" +
+                                "<td>" + msg.message + "</td>" +
+                                "</tr>";
+                        }
+                        output += "</table>";
+                        $("#allMsgs").empty().html(output);
+                    });
+        });
     }
 
     if(data.userID !== null || data.userID !== ''){
@@ -118,27 +122,12 @@ $(window).on('load', function(){
             userID : user.userID
         };
 
-        $.get("/getAll", function(allAvailableRooms){
-            $.each(allAvailableRooms, function(counter, room){
-                $.get("/getParticipants", {roomID:room.roomID}, function(chatroomParticipants){
-                    for(const p of chatroomParticipants){
-                        let participant = {
-                            roomID : room.roomID,
-                            userID : p.userID
-                        };
-
-                        if(participant.userID === userLoggedIn.userID){
-                            $.post("/deleteUserFromRoom", participant).done(function(){
-                            });
-                        }
-                    }
-                });
-            });
-        });
+        console.log("I chatrooms.js deleteUser" ,userLoggedIn);
         $.post("/deleteUser", userLoggedIn);
         $(location).attr('href', 'index.html');
         setCookie("username", null, 0);
         setCookie("userID", null, 0);
+
     });
 
     // button to go back to the mainpage

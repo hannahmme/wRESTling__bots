@@ -17,15 +17,16 @@ public class Users {
         registeredUsers.add(user);
     }
 
-    public static void deleteUser(User user){
-        for(User aUser : registeredUsers){
-            String UID = aUser.getUserID();
-            System.out.println("UserID i listen: " + UID);
-            if(UID.equals(user.getUserID())){
-                registeredUsers.remove(user);
-            }
+    //Removes object from all registered users and all chatrooms
+    public static void deleteUser(String userID) {
+        ArrayList<Chatroom> chatrooms = Chatrooms.getChatrooms();
+        for(Chatroom chatroom : chatrooms){
+            chatroom.deleteParticipant(userID);
         }
+        User user = Users.getUser(userID);
+        registeredUsers.remove(user);
     }
+
 
     public static User getUser(String userID){
         for(User user : getRegisteredUsers()){

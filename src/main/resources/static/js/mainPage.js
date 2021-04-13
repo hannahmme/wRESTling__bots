@@ -85,7 +85,14 @@ $(function(){
             userID : user.userID
         };
 
-        $.get("/getAll", function(allAvailableRooms){
+        $.post("/deleteUser", userLoggedIn.userID);
+        $(location).attr('href', 'index.html');
+        setCookie("username", null, 0);
+        setCookie("userID", null, 0);
+
+
+
+/*        $.get("/getAll", function(allAvailableRooms){
             $.each(allAvailableRooms, function(counter, room){
                 $.get("/getParticipants", {roomID:room.roomID}, function(chatroomParticipants){
                     for(const p of chatroomParticipants){
@@ -95,17 +102,14 @@ $(function(){
                         };
 
                         if(participant.userID === userLoggedIn.userID){
-                            $.post("/deleteUserFromRoom", participant).done(function(){
+                            $.post("/deleteUserFromROom", participant).done(function(){
                             });
                         }
                     }
                 });
             });
         });
-        $.post("/deleteUser", userLoggedIn);
-        $(location).attr('href', 'index.html');
-        setCookie("username", null, 0);
-        setCookie("userID", null, 0);
+        $.post("/deleteUser", userLoggedIn);*/
     });
 
 

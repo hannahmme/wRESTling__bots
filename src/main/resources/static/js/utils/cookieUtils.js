@@ -39,7 +39,7 @@ function getUser(){
 }
 
 
-//TODO: Skal sjekke om denne kan gjøres "global", så den kan brukes flere steder 
+//TODO: Skal sjekke om denne kan gjøres "global", så den kan brukes flere steder
 /*
 function userLoggedIn(userID) {
     if (userID === null || userID === '') {
