@@ -61,6 +61,9 @@ public class ChatroomAPI {
     @PostMapping("/deleteUser")
     public void deleteUser(String userID){
         ArrayList<User> list = Users.getRegisteredUsers();
+
+        //If user is still in rooms, delete from rooms aswell.
+
         for(User user : list){
             String UID = user.getUserID();
             if(UID.equals(userID)){
@@ -89,21 +92,22 @@ public class ChatroomAPI {
 
     //add message to list of messages belonging specific chatroom
     @PostMapping("/addMessage")
-    public void addMessage(String roomID, String userID, String msg){
-        ArrayList<Chatroom> list = Chatrooms.getChatrooms();
-        for(Chatroom chatroom : list){
-            String chatroomID = chatroom.getRoomID();
-            if(chatroomID.equals(roomID)){
-
-                Message aMsg = new Message(userID, msg, roomID);
-                chatroom.addMessage(aMsg);
-
-                Message botAnswer = Chatbots.respond(aMsg);
-                if(botAnswer!=null) {
-                    chatroom.addMessage(botAnswer);
-                }
-            }
+    public String addMessage(String roomID, String userID, String msg){
+        Chatroom chatroom = Chatrooms.getChatroomById(roomID);
+        if(chatroom == null){
+            return "Chatroom not found";
         }
+        User user = chatroom.getParticipantById(userID);
+        if(user == null){
+            return "User is not a participant in this room";
+        }
+        Message message = new Message(userID, msg, roomID);
+        chatroom.addMessage(message);
+        Message botAnswer = Chatbots.respond(message);
+        if(botAnswer!=null) {
+            chatroom.addMessage(botAnswer);
+        }
+        return "OK, message sent";
     }
 
     //get messages from specific chatroom

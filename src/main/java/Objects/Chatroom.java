@@ -1,5 +1,7 @@
 package Objects;
 
+import org.springframework.util.StringUtils;
+
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -19,8 +21,12 @@ public class Chatroom {
     }
 
     public User getParticipantById(String userID){
+        if(userID.isEmpty() || userID.isBlank() || userID == null){
+            return null;
+        }
         for(User participant : getParticipants() ){
             String userIDstring = participant.getUserID();
+
             if(userIDstring.equals(userID)){
                 return participant;
             }
@@ -29,6 +35,9 @@ public class Chatroom {
     }
 
     public void addParticipant(String userID){
+        if(userID.isEmpty() || userID.isBlank() || userID == null){
+            return;
+        }
         if(getParticipantById(userID) == null){
             User participant = Users.getUser(userID);
             this.participants.add(participant);

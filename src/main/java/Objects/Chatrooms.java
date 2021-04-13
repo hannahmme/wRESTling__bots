@@ -11,6 +11,16 @@ public class Chatrooms {
         chatrooms = new ArrayList<>();
     }
 
+    public static Chatroom getChatroomById(String roomID){
+        for(Chatroom chatroom : chatrooms){
+            String chatroomID = chatroom.getRoomID();
+            if(chatroomID.equals(roomID)){
+                return chatroom;
+            }
+        }
+        return null;
+    }
+
     public static ArrayList<Chatroom> getChatrooms() {
         return chatrooms;
     }

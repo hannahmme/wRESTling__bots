@@ -14,8 +14,11 @@ public class Oblig2DatSkyApplication {
         // initializing Bot in java
         Chatbots.initialize();
 
-        // making a new chatroom every 1minute in 5 minutes
-        for (int i = 0; i <= 5; i++) {
+
+        //TODO: Kommenterte ut så ikke det ble så ikke debugger henger seg opp
+
+        //making a new chatroom every 1minute in 5 minutes
+      /*  for (int i = 0; i <= 5; i++) {
             int finalI = i;
             new java.util.Timer().schedule(
 
@@ -28,7 +31,7 @@ public class Oblig2DatSkyApplication {
                     10000
             );
             TimeUnit.MINUTES.sleep(1);
-        }
+        }*/
 
         // setting up the Server for push notifications
 

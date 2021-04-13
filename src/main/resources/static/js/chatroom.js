@@ -1,7 +1,6 @@
 $(window).on('load', function(){
     let urlObject = new URL(window.location.href);
     let roomID = urlObject.searchParams.get('chatroomID');
-    getMessages();
 
     let user = getUser();
     let data = {
@@ -25,6 +24,11 @@ $(window).on('load', function(){
                             "<th>Message</th>" +
                         "</tr>";
 
+                if(chatroomMessages === null || chatroomMessages.length === 0){
+                    console.error("Meldinger er tomme he ihå");
+                    return;
+                }
+
                 for (const msg of chatroomMessages.reverse()) {
                     for (const participant of chatroomParticipants){
                         if (msg.userID === participant.userID){
@@ -47,10 +51,13 @@ $(window).on('load', function(){
 
     }
 
-    $.post("/addParticipant", data)
-        .done(function () { // JavaScript promise: funksjonen kalles når post-kallet er ferdig.
-        getParticipants();  // (sørger for at getParticipants() blir kallt etter vi har lagt til bruker)
-    });
+    if(data.userID !== null || data.userID !== ''){
+        $.post("/addParticipant", data)
+            .done(function () { // JavaScript promise: funksjonen kalles når post-kallet er ferdig.
+                getParticipants();  // (sørger for at getParticipants() blir kallt etter vi har lagt til bruker)
+            });
+    }
+
 
     function getParticipants(){
         $.get("/getParticipants", {roomID:roomID}, function(chatroomParticipants){
@@ -60,14 +67,23 @@ $(window).on('load', function(){
                         "<th>Username</th>" +
                     "</tr>";
 
-            for (const participant of chatroomParticipants){
-                output +=
-                    "<tr>" +
-                        "<td>" + participant.username + "</td>" +
-                    "</tr>";
+            try{
+                console.log("Chatroomdeltakere: ", chatroomParticipants);
+                for (const participant of chatroomParticipants){
+                    if(participant !== null){
+                        output +=
+                            "<tr>" +
+                            "<td>" + participant.username + "</td>" +
+                            "</tr>";
+                    }
+                }
+                output += "</table>";
+                $("#allUsers").empty().html(output);
+            }catch(err){
+                console.log("Errormessage: ", err.message);
+                $("#notLoggedInErrorMessage").innerHTML = "Not logged in";
             }
-            output += "</table>";
-            $("#allUsers").empty().html(output);
+
         });
     }
 
