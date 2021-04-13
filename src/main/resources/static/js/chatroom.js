@@ -74,7 +74,10 @@ $(window).on('load', function(){
     if(data.userID !== null || data.userID !== ''){
         $.post("/addParticipant", data)
             .done(function () { // JavaScript promise: funksjonen kalles når post-kallet er ferdig.
-                getParticipants();  // (sørger for at getParticipants() blir kallt etter vi har lagt til bruker)
+                getParticipants()
+                    .done(function(){
+                        getMessages();
+                    })// (sørger for at getParticipants() blir kallt etter vi har lagt til bruker)
             });
     }
 

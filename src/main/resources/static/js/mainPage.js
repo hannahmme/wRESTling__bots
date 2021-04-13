@@ -85,7 +85,7 @@ $(function(){
             userID : user.userID
         };
 
-        $.post("/deleteUser", userLoggedIn.userID);
+        $.post("/deleteUser", userLoggedIn);
         $(location).attr('href', 'index.html');
         setCookie("username", null, 0);
         setCookie("userID", null, 0);
