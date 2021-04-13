@@ -134,7 +134,7 @@ $(window).on('load', function(){
     });
 
 
-
+// code for adding three bots by pressing a button
     $("#addHannah").click(function() {
         let data = {
             roomID : roomID,
@@ -146,4 +146,30 @@ $(window).on('load', function(){
             location.reload();
         });
     });
+
+    $("#addCaroline").click(function() {
+        let data = {
+            roomID : roomID,
+            username : "Caroline (bot)"
+        };
+
+
+        $.post("/addBotToRoom", data).done(function () {
+            location.reload();
+        });
+    });
+
+    $("#addAmalie").click(function() {
+        let data = {
+            roomID : roomID,
+            username : "Amalie (bot)"
+        };
+
+
+        $.post("/addBotToRoom", data).done(function () {
+            location.reload();
+        });
+    });
+
+
 });

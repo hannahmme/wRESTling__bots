@@ -97,9 +97,27 @@ public class ChatroomAPI {
                 Message aMsg = new Message(userID, msg, roomID);
                 chatroom.addMessage(aMsg);
 
-                Message botAnswer = Chatbots.respond(aMsg);
-                if(botAnswer!=null) {
-                    chatroom.addMessage(botAnswer);
+                // getting answer from modbot
+                Message modAnswer = Chatbots.respond(aMsg);
+                if(modAnswer!=null) {
+                    chatroom.addMessage(modAnswer);
+                }
+
+                // getting answers from other bots if they are added to the room
+                for(User u : Users.getRegisteredUsers()){
+                    if(u.getUsername().equals("Hannah (bot)")){
+                        Message answer = Chatbots.hannahResp(aMsg);
+                        chatroom.addMessage(answer);
+                    }
+                    if(u.getUsername().equals("Caroline (bot)")){
+                        Message answer = Chatbots.carolineResp(aMsg);
+                        chatroom.addMessage(answer);
+                    }
+                    if(u.getUsername().equals("Amalie (bot)")){
+                        Message answer = Chatbots.amalieResp(aMsg);
+                        chatroom.addMessage(answer);
+                    }
+
                 }
             }
         }
@@ -141,7 +159,6 @@ public class ChatroomAPI {
 
                 for (User u : Users.getRegisteredUsers()) {
                     if (username.equals(u.getUsername())) {
-                        System.out.println(u.getUsername());
                         chatroom.addParticipant(u.getUserID());
                     }
                 }
