@@ -9,6 +9,15 @@ $(window).on('load', function(){
         userID : user.userID
     };
 
+    if(user.userID === null || user.userID === ''){
+        window.alert("You need to be a registered user to be in this chatroom.");
+        setTimeout(function(){
+            window.location.href = 'http://localhost:8080/index.html';
+        })
+    }else{
+        getMessages();
+    }
+
     let userLoggedIn = document.getElementById("userLoggedIn");
     userLoggedIn.innerHTML = user.username;
 

@@ -27,6 +27,7 @@ function getCookie(cookieName){
     return "";
 }
 
+
 function getUser(){
     let userID = getCookie("userID");
     let username = getCookie("username");
@@ -36,3 +37,17 @@ function getUser(){
     };
     return user;
 }
+
+
+//TODO: Skal sjekke om denne kan gjøres "global", så den kan brukes flere steder 
+/*
+function userLoggedIn(userID) {
+    if (userID === null || userID === '') {
+        window.alert("You need to be a registered user to be in this chatroom.");
+        setTimeout(function () {
+            window.location.href = 'http://localhost:8080/index.html';
+        })
+    }else{
+        return null;
+    }
+}*/

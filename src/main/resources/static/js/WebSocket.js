@@ -1,8 +1,8 @@
-// JS code for websockets
+// JS code for websockets (Websocket Client Endpoint)
 $("#connectPush").click(function(){
 
     // TODO: Could not connect - could not find reason.
-    const webSocket = new WebSocket("ws://localhost:8080/");
+    const webSocket = new WebSocket("ws://localhost:8080/wRESTling__bots/pushnotifications");
 
     // telling server that we are online
     webSocket.addEventListener('open', function (event) {
