@@ -56,7 +56,6 @@ public class ChatroomAPI {
         return null;
     }
 
-    // TODO: slette bruker om hun trykker på logg ut knappen
     //remove user as registered user (delete user from application)
     @PostMapping("/deleteUser")
     public void deleteUser(String userID){
@@ -133,5 +132,21 @@ public class ChatroomAPI {
         return Users.getRegisteredUsers();
     }
 
+    @PostMapping("/addBotToRoom")
+    public void addBotToRoom(String roomID, String username){
+        ArrayList<Chatroom> list = Chatrooms.getChatrooms();
+        for(Chatroom chatroom : list){
+            String chatroomID = chatroom.getRoomID();
+            if(chatroomID.equals(roomID)){
+
+                for (User u : Users.getRegisteredUsers()) {
+                    if (username.equals(u.getUsername())) {
+                        System.out.println(u.getUsername());
+                        chatroom.addParticipant(u.getUserID());
+                    }
+                }
+            }
+        }
+    }
 
 }

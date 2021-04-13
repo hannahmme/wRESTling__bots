@@ -132,8 +132,18 @@ $(window).on('load', function(){
                 $(location).attr('href', 'mainpage.html');
             });
     });
+
+
+
+    $("#addHannah").click(function() {
+        let data = {
+            roomID : roomID,
+            username : "Hannah (bot)"
+        };
+
+
+        $.post("/addBotToRoom", data).done(function () {
+            location.reload();
+        });
+    });
 });
-
-
-
-

@@ -9,8 +9,8 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/pushnotification")
 public class PushNotificationSocket {
 
+    // getting the userID to not send msgnotification to person who sent the message
     public static String userID;
-    private static Session session;
 
     // a list over all connected clients/ sessions (all have pressed the button)
     private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
@@ -23,37 +23,30 @@ public class PushNotificationSocket {
         }
     }
 
-
+    // happens when the connection opens
     @OnOpen
     public void onOpen(Session session) {
-        // get session and websocket connection. UserID is connected to a spesific session
-        this.session = session;
+        // get session and websocket connection
         sessions.add(session);
-
-        System.out.println("I onOpen");
-
     }
-
 
     //receives the information from the Websocket when a message is sent to Endpoint
     @OnMessage
     public void onMessage(String msg) throws IOException {
         // sending incoming message to all clients connected to room
         broadcast(msg);
-        System.out.println("I onMessage");
     }
 
-
-
     @OnClose
-    public void onClose(Session session) throws IOException {
+    public void onClose(Session session) {
         // WebSocket connection closes. AKA when a user logs out
         sessions.remove(session);
     }
 
     @OnError
-    public void onError(Session session, Throwable throwable) {
+    public void onError(Throwable throwable) {
         // Do error handling here
+        throwable.printStackTrace();
     }
 
 }
