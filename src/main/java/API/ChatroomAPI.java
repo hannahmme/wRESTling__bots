@@ -44,12 +44,15 @@ public class ChatroomAPI {
         }
 
         Chatroom chatroom = Chatrooms.getChatroomById(roomID);
-        if(chatroom != null){
-            if(chatroom.getParticipantById(userID) == null){
-                chatroom.addParticipant(userID);
-            }
+        if(chatroom == null){
+            return "Chatroom not found";
         }
-        return "User added as participant in chatroom";
+
+        if(chatroom.getParticipantById(userID) == null){
+            chatroom.addParticipant(userID);
+            return "User added as participant in chatroom";
+        }
+        return "User is already a participant.";
     }
 
     //get list of participants of specific chatroom
@@ -164,6 +167,7 @@ public class ChatroomAPI {
     public ArrayList<User> getAllUsers(){
         return Users.getRegisteredUsers();
     }
+
 
     @PostMapping("/addBotToRoom")
     public void addBotToRoom(String roomID, String username){
