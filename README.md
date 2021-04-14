@@ -18,6 +18,11 @@ If you write a message including one of the following greetings or actions: "hi"
 "dance", "run", one of the bots will reply with an adequate answer, while the other bots will answer with simple 
 messages like "hi".
 
+If someone tries to enter a chat without being a registered user first, they will be notified and sent back to the 
+'homepage' where they can register themselves. 
+If someone tries to send a message without being a registered user, they will be notified. 
+If someone tries to send a message as a registered user, but not being a participant in the chatroom, they will be notified. 
+
 You can log out of the application by clicking the "Log out"-button either from the main page or inside a chat room. 
 Your user will then be removed from the chat rooms you are registered in and from the application's list of registered 
 users. 

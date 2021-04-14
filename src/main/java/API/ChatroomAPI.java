@@ -26,7 +26,6 @@ public class ChatroomAPI {
                 newChatroom.addParticipant(u.getUserID());
             }
         }
-        System.out.println("Chatroom opprettet med navn: " + newChatroom.getRoomName() + " og id: " + newChatroom.getRoomID());
     }
 
     //add new participant of chatroom
@@ -40,6 +39,7 @@ public class ChatroomAPI {
         }
 
         //checks if user trying to join chatroom is a registered user
+        String output = null;
         for(User user : Users.getRegisteredUsers()) {
             if (user.getUserID().equals(userID)) {
                 ArrayList<Chatroom> list = Chatrooms.getChatrooms();
@@ -47,14 +47,13 @@ public class ChatroomAPI {
                     String chatroomID = chatroom.getRoomID();
                     if (chatroomID.equals(roomID)) {
                         chatroom.addParticipant(userID);
-                        System.out.println(chatroom.getRoomName() + " har antall deltakere: " + chatroom.getParticipants().size());
                     }
                 }
             } else {
-                return "You need to be a registered user before you can have acceess";
+                output = "You need to be a registered user before you can have acceess";
             }
         }
-        return null;
+        return output;
     }
 
     //get list of participants of specific chatroom
@@ -97,41 +96,56 @@ public class ChatroomAPI {
     //add message to list of messages belonging specific chatroom
     @PostMapping("/addMessage")
     public String addMessage(String roomID, String userID, String msg){
+        String output = null;
         Chatroom chatroom = Chatrooms.getChatroomById(roomID);
         if(chatroom == null){
             return "Chatroom not found";
         }
-        User user = chatroom.getParticipantById(userID);
-        if(user == null){
-            return "User is not a participant in this room";
-        }
-        Message message = new Message(userID, msg, roomID);
-        chatroom.addMessage(message);
 
-        // getting answer from modbot
-        Message modAnswer = Chatbots.modResp(message);
-        if(modAnswer!=null) {
-            chatroom.addMessage(modAnswer);
-        }
+        //check if user trying to add message is a registered user
+        for(User registeredUser : Users.getRegisteredUsers()){
+            if(registeredUser.getUserID().equals(userID)){
 
-        // getting answers from other bots if they are added to the room
-        for(User u : chatroom.getParticipants()){
-            if(u.getUsername().equals("Hannah (bot)")){
-                Message answer = Chatbots.hannahResp(message);
-                if(answer!=null){
-                    chatroom.addMessage(answer);
+                //if the user is a registered user, check if user i a participant of chatroom
+                User user = chatroom.getParticipantById(userID);
+                if(user == null){
+                    return "User is not a participant in this room";
                 }
-            }
-            if(u.getUsername().equals("Caroline (bot)")){
-                Message answer = Chatbots.carolineResp(message);
-                chatroom.addMessage(answer);
-            }
-            if(u.getUsername().equals("Amalie (bot)")){
-                Message answer = Chatbots.amalieResp(message);
-                chatroom.addMessage(answer);
+
+                //if user is a participant of chatroom, add message
+                Message message = new Message(userID, msg, roomID);
+                chatroom.addMessage(message);
+                output = "OK, message sent";
+
+                // getting answer from modbot
+                Message modAnswer = Chatbots.modResp(message);
+                if(modAnswer!=null) {
+                    chatroom.addMessage(modAnswer);
+                }
+
+                // getting answers from other bots if they are added to the room
+                for(User u : chatroom.getParticipants()){
+                    if(u.getUsername().equals("Hannah (bot)")){
+                        Message answer = Chatbots.hannahResp(message);
+                        if(answer!=null){
+                            chatroom.addMessage(answer);
+                        }
+                    }
+                    if(u.getUsername().equals("Caroline (bot)")){
+                        Message answer = Chatbots.carolineResp(message);
+                        chatroom.addMessage(answer);
+                    }
+                    if(u.getUsername().equals("Amalie (bot)")){
+                        Message answer = Chatbots.amalieResp(message);
+                        chatroom.addMessage(answer);
+                    }
+                }
+
+            }else{
+                output = "You need to be a registered user to send a message";
             }
         }
-        return "OK, message sent";
+        return output;
     }
 
     //get messages from specific chatroom

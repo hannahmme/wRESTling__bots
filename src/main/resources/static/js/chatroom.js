@@ -91,7 +91,6 @@ $(window).on('load', function(){
                     "</tr>";
 
             try{
-                console.log("Chatroomdeltakere: ", chatroomParticipants);
                 for (const participant of chatroomParticipants){
                     if(participant !== null){
                         output +=
@@ -103,7 +102,7 @@ $(window).on('load', function(){
                 output += "</table>";
                 $("#allUsers").empty().html(output);
             }catch(err){
-                console.log("Errormessage: ", err.message);
+                console.error("Errormessage: ", err.message);
                 $("#notLoggedInErrorMessage").innerHTML = "Not logged in";
             }
 
@@ -132,7 +131,6 @@ $(window).on('load', function(){
             userID : user.userID
         };
 
-        console.log("I chatrooms.js deleteUser" ,userLoggedIn);
         $.post("/deleteUser", userLoggedIn);
         $(location).attr('href', 'index.html');
         setCookie("username", null, 0);
