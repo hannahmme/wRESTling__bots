@@ -13,6 +13,16 @@ public class Users {
         registeredUsers.add(user);
     }
 
+    //Checks if user is a registered user
+    public static boolean userIsRegistered(String userID){
+        for(User registeredUser : getRegisteredUsers()){
+            if(registeredUser.getUserID().equals(userID)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     //Removes object from all registered users and all chatrooms
     public static void deleteUser(String userID) {
         ArrayList<Chatroom> chatrooms = Chatrooms.getChatrooms();
