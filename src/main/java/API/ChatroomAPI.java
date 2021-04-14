@@ -102,7 +102,7 @@ public class ChatroomAPI {
 
         //if user is not a registered user
         if (!Users.userIsRegistered(userID)) {
-            return "You need to be a registered user before you can have acceess";
+            return "You need to be a registered user before you can send a message";
         }
         //if the user is a registered user, check if user i a participant of chatroom
         User user = chatroom.getParticipantById(userID);
