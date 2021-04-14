@@ -89,29 +89,7 @@ $(function(){
         $(location).attr('href', 'index.html');
         setCookie("username", null, 0);
         setCookie("userID", null, 0);
-
-
-
-/*        $.get("/getAll", function(allAvailableRooms){
-            $.each(allAvailableRooms, function(counter, room){
-                $.get("/getParticipants", {roomID:room.roomID}, function(chatroomParticipants){
-                    for(const p of chatroomParticipants){
-                        let participant = {
-                            roomID : room.roomID,
-                            userID : p.userID
-                        };
-
-                        if(participant.userID === userLoggedIn.userID){
-                            $.post("/deleteUserFromROom", participant).done(function(){
-                            });
-                        }
-                    }
-                });
-            });
-        });
-        $.post("/deleteUser", userLoggedIn);*/
     });
-
 
     // user wants to receive push notifications
     $("#connectPush").click(function(){
@@ -120,5 +98,4 @@ $(function(){
         // reload location every 10secs?
         location.reload();
     });
-
 });

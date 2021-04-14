@@ -97,17 +97,14 @@ public class Chatbots {
         return new Message(bot4.getUserID(), "hello", message.getRoomID());
     }
 
-
-    //TODO: Kommentert ut enn så lenge siden debugger hang seg opp
- /*   // code to genereate new chatrooms
+    // code to genereate new chatrooms
     public static void generateChatroom(int i){
-        String roomName = new String [] {"Cats","Disney","Coding","Dogs", "Reading", "Gaming"}[i];
+        String roomName = new String [] {"Cat room","Disney room","Coding room","Dog room", "Reading room", "Gaming room"}[i];
 
         Chatroom cr = new Chatroom(roomName, bot1);
         Chatrooms.addRoom(cr);
 
         // add moderator to chatroom
         cr.addParticipant(bot1.getUserID());
-    }*/
-
+    }
 }

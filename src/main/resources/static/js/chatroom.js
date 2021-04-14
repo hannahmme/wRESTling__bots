@@ -26,9 +26,7 @@ $(window).on('load', function(){
         roomName.innerHTML = chatroomName;
     });
 
-
     function getMessages() {
-
         $.get("/getParticipants", {roomID:roomID})
             .done(function(chatroomParticipants){
                 $.get("/getMessages", {roomID: roomID})
@@ -80,7 +78,6 @@ $(window).on('load', function(){
                     })// (sørger for at getParticipants() blir kallt etter vi har lagt til bruker)
             });
     }
-
 
     function getParticipants(){
         $.get("/getParticipants", {roomID:roomID}, function(chatroomParticipants){
@@ -135,7 +132,6 @@ $(window).on('load', function(){
         $(location).attr('href', 'index.html');
         setCookie("username", null, 0);
         setCookie("userID", null, 0);
-
     });
 
     // button to go back to the mainpage
@@ -155,14 +151,12 @@ $(window).on('load', function(){
             });
     });
 
-
 // code for adding three bots by pressing a button
     $("#addHannah").click(function() {
         let data = {
             roomID : roomID,
             username : "Hannah (bot)"
         };
-
 
         $.post("/addBotToRoom", data).done(function () {
             location.reload();
@@ -175,7 +169,6 @@ $(window).on('load', function(){
             username : "Caroline (bot)"
         };
 
-
         $.post("/addBotToRoom", data).done(function () {
             location.reload();
         });
@@ -187,15 +180,8 @@ $(window).on('load', function(){
             username : "Amalie (bot)"
         };
 
-
         $.post("/addBotToRoom", data).done(function () {
             location.reload();
         });
     });
-
-
-
-
-
-
 });

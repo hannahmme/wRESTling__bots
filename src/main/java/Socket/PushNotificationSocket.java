@@ -50,5 +50,4 @@ public class PushNotificationSocket {
         // Do error handling here
         throwable.printStackTrace();
     }
-
 }
