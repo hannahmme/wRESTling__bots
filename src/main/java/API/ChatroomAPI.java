@@ -32,18 +32,26 @@ public class ChatroomAPI {
     //add new participant of chatroom
     @PostMapping("/addParticipant")
     public String addParticipant(String roomID, String userID){
-        if(userID.isEmpty() || userID.isBlank() || userID == null){
-            return "User not registered.";
+        if(userID.isEmpty() || userID.isBlank()){
+            return "Invalid user-ID.";
         }
-        if(roomID.isEmpty() || roomID.isBlank() || roomID == null){
+        if(roomID.isEmpty() || roomID.isBlank()){
             return "RoomID is not set.";
         }
-        ArrayList<Chatroom> list = Chatrooms.getChatrooms();
-        for(Chatroom chatroom : list){
-            String chatroomID = chatroom.getRoomID();
-            if(chatroomID.equals(roomID)){
-                chatroom.addParticipant(userID);
-                System.out.println(chatroom.getRoomName() + " har antall deltakere: " + chatroom.getParticipants().size());
+
+        //checks if user trying to join chatroom is a registered user
+        for(User user : Users.getRegisteredUsers()) {
+            if (user.getUserID().equals(userID)) {
+                ArrayList<Chatroom> list = Chatrooms.getChatrooms();
+                for (Chatroom chatroom : list) {
+                    String chatroomID = chatroom.getRoomID();
+                    if (chatroomID.equals(roomID)) {
+                        chatroom.addParticipant(userID);
+                        System.out.println(chatroom.getRoomName() + " har antall deltakere: " + chatroom.getParticipants().size());
+                    }
+                }
+            } else {
+                return "You need to be a registered user before you can have acceess";
             }
         }
         return null;

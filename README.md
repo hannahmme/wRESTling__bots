@@ -22,6 +22,43 @@ You can log out of the application by clicking the "Log out"-button either from 
 Your user will then be removed from the chat rooms you are registered in and from the application's list of registered 
 users. 
 
+## API-metods: 
+POST - Register user 
+/registerUser?username={String}
+
+POST - Add chatroom 
+/addOne?roomName={String}&creator={User}
+
+POST - Add bot to chatroom
+/addBotToRoom?roomID={String}&username={String}
+
+POST - Add user to chatroom
+/addParticipant?roomID={String}&userID={String}
+
+POST - Add message to chatroom 
+/addMessage?roomID={String}&userID={String}&msg={String}
+
+GET - Returning all registeres users 
+/getAllUsers
+
+GET - Returning list of all chatrooms
+/getAll
+
+GET - Get list of participants of specific chatroom
+/getParticipants?roomID={String}
+
+GET - Returning all messages from specific chatroom
+/getMessages?roomID={String}
+
+GET - Returning name of chatroom
+/getRoomname?roomID={String}
+
+POST - Delete user from all chatrooms and remove as registered user
+/deleteUser?userID={String}
+
+POST - Delete user from one specific chatroom 
+/deleteUserFromRoom?roomID={String}&userID={String}
+
 ## Server
 The server is a Spring Boot application created with Spring Initializr.
 
